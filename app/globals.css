@@ -38,6 +38,11 @@
   --callout-border-rgb: 172, 175, 176;
   --card-rgb: 180, 185, 188;
   --card-border-rgb: 131, 134, 135;
+
+  --bg : #151c2c;
+  --bg-smooth : #182237;
+  --text : white;
+  --text-smooth : #b7bac1;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -86,13 +91,9 @@ body {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  /* padding: 1rem; */
+  background-color: var(--bg);
+  color: var(--text);
 }
 
 a {
