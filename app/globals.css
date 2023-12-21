@@ -91,7 +91,6 @@ body {
 }
 
 body {
-  /* padding: 1rem; */
   background-color: var(--bg);
   color: var(--text);
 }
