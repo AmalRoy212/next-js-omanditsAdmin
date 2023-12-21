@@ -111,6 +111,9 @@ function Sidebar() {
           </li>
         ))}
       </ul>  
+      <button className={styles.logout}>
+        <MdLogout/> Log Out
+      </button>
     </div>
   )
 }
