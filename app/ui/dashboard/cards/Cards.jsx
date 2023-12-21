@@ -9,7 +9,7 @@ function Cards() {
       <div className={styles.texts}>
         <span className={styles.title}>Total delegates</span>
         <span className={styles.number}>10.273</span>
-        <span className={styles.details}><span className={styles.positive}>12%</span>more than previous week</span>
+        <span className={styles.details}><span className={styles.positive}>12%</span> more than previous week</span>
       </div>
     </div>
   )
