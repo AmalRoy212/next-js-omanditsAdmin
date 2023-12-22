@@ -5,19 +5,21 @@ function AddUser() {
   return (
     <div className={styles.container}>
       <form action="" className={styles.form}>    
-        <input type="text" placeholder='title' name="title" required id="" />
-        <select name="cat" id="cat">
-          <option value="">Choose</option>
-          <option value="kitchen">Kitchen</option>
-          <option value="Mobile">Mobile</option>
-          <option value="Computer">Computer</option>
-          <option value="Playstation">Playstation</option>
+        <input type="text" placeholder='username' name="username" required id="" />
+        <input type="email" placeholder='email' name="email" required id="" />
+        <input type="password" placeholder='password' name="password" required id="" />
+        <input type="phone" placeholder='phone' name="phone" id="" />
+        <select name="isAdmin" id="isAdmin">
+          <option value={false} selected>Is admin</option>
+          <option value={true}>Yes</option>
+          <option value={false}>No</option>
         </select>
-        <input type="number" placeholder='price' name="price" id="" />
-        <input type="number" placeholder='stock' name="stock" id="" />
-        <input type="text" placeholder='color' name="color" id="" />
-        <input type="number" placeholder='size' name="size" id="" />
-        <textarea name="desc" id=""  rows="16" placeholder='discription'></textarea>
+        <select name="isActive" id="isActive">
+          <option value={true} selected>Is Active</option>
+          <option value={true}>Yes</option>
+          <option value={false}>No</option>
+        </select>
+        <textarea name="address" id="address"  rows="16" placeholder='Address'></textarea>
         <button type='submit'>Submit</button>
       </form>
     </div>

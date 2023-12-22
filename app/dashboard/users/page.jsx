@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "../../ui/dashboard/users/users.module.css";
+import styles from "@/app/ui/dashboard/users/users.module.css";
 import Search from '@/app/ui/dashboard/search/Search';
 import Link from 'next/link';
 import Pagination from '@/app/ui/dashboard/pagination/Pagination';
@@ -39,7 +39,7 @@ function Users() {
             <td>Active</td>
             <td>
               <div className={styles.buttons}>
-                <Link href='/dashboard'>
+                <Link href='/dashboard/users/test'>
                   <button className={`${styles.button} ${styles.view}`}>view</button>
                 </Link>
                 <button className={`${styles.button} ${styles.delete}`}>delete</button>

@@ -13,7 +13,7 @@
 
 .form input, .form textarea, .form select{
   padding: 20px;
-  background-color: transparent;
+  background-color: var(--bg);
   border: 1px solid grey;
   border-radius: 10px;
   margin-bottom: 20px;
