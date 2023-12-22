@@ -6,9 +6,6 @@ import MenuLinks from './menuLinks/MenuLinks';
 import { GiPublicSpeaker } from "react-icons/gi";
 import {
   MdDashboard,
-  MdSupervisedUserCircle,
-  MdShoppingBag,
-  MdAttachMoney,
   MdWork,
   MdAnalytics,
   MdPeople,
@@ -16,8 +13,11 @@ import {
   MdHelpCenter,
   MdLogout,
 } from "react-icons/md";
+import { auth, signOut } from '@/app/auth';
 
-function Sidebar() {
+async function Sidebar() {
+
+  const { user } = await auth();
 
   const menuItems = [
     {
@@ -95,9 +95,9 @@ function Sidebar() {
   return (
     <div className={styles.container}>
       <div className={styles.user}>
-        <img className={styles.userImage} src="https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-Vector-PNG-Pic.png" width={50} height={50} alt="" />
+        <img className={styles.userImage} src={user.img || "https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-Vector-PNG-Pic.png"} width={50} height={50} alt="" />
         <div className={styles.userDetails}>
-            <span className={styles.username}>John Doe</span>
+            <span className={styles.username}>{user.username}</span>
             <span className={styles.userTitle}>Administrator</span>
         </div>
       </div>
@@ -111,9 +111,14 @@ function Sidebar() {
           </li>
         ))}
       </ul>  
-      <button className={styles.logout}>
-        <MdLogout/> Log Out
-      </button>
+      <form action={async () => {
+        "use server"
+        await signOut();
+      }}>
+        <button className={styles.logout}>
+          <MdLogout/> Log Out
+        </button>
+      </form>
     </div>
   )
 }
