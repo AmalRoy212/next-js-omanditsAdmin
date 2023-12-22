@@ -7,7 +7,7 @@ function Rightbar() {
     <div className={styles.container}>
       <div className={styles.item}>
         <div className={styles.bgContainer}>
-          <img width={150} height={150} src="/images/meetings.png" alt="" fill className={styles.bg} />
+          <img width={150} height={150} src="/images/meetings.png" alt="" className={styles.bg} />
         </div>
         <div className={styles.texts}>
           <span className={styles.notifications}>New Delegate</span>

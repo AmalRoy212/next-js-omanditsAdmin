@@ -6,6 +6,7 @@
     flex: 1;
     background-color: var( --bg-smooth );
     padding: 20px;
+    max-height: 100vh;
 }
 
 .content{
