@@ -1,0 +1,21 @@
+## adding new delegate request post method
+
+POST http://localhost:3000/api/delegate
+
+Content-Type: application/json
+
+{
+    "name" : "test",
+    "email" : "test@gmail.com",
+    "jobTitle" : "test",
+    "companyName" : "test",
+    "phone" : "test",
+    "industry" : "test",
+    "numOfEmployees" : "test",
+    "lookingFor" : "test",
+    "role" : "test",
+    "country" : "test"                                                        
+}
+
+
+##test

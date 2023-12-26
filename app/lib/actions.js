@@ -1,7 +1,7 @@
 "use server"
 
 import { revalidatePath } from "next/cache";
-import User from "./usersModel";
+import User from "./delegateModel";
 import connectToDB from "./utils";
 import { redirect } from "next/navigation";
 import bcrypt from "bcrypt";
@@ -49,6 +49,7 @@ export const authenticate = async function(FormData) {
 }
 
 export const setAdmin = async function (){
+  
   try {
     await connectToDB();
     const salt = await bcrypt.genSalt(10);

@@ -3,13 +3,13 @@ import styles from "@/app/ui/dashboard/users/users.module.css";
 import Search from '@/app/ui/dashboard/search/Search';
 import Link from 'next/link';
 import Pagination from '@/app/ui/dashboard/pagination/Pagination';
-import { fetchUsers } from '@/app/lib/data';
+import { fetchDelegates } from '@/app/lib/data';
 
 async function Users({searchParams}) {
 
   const q  = searchParams?.q || ""
   const page  = searchParams?.page || 1;
-  const { count, users } = await fetchUsers(q, page);
+  const { count, delegate } = await fetchDelegates(q, page);
 
   return (
     <div className={styles.container}>
@@ -31,7 +31,7 @@ async function Users({searchParams}) {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => {
+          {delegate.map((user) => {
             return(
               <tr key={user._id}>
                 <td>

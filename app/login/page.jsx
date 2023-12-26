@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from "@/app/ui/login/login.module.css";
-import { authenticate, setAdmin } from '../lib/actions';
 import LoginForm from '../ui/login/loginForm/LoginForm';
+import connectToDB from '../lib/utils';
+import { setAdmin } from '../lib/actions';
 
 function LoginPage() {
   return (
