@@ -15,3 +15,14 @@ export const fetchDelegates = async (q, page) => {
     throw new Error(`Failed to fetch delegates: ${error.message}`);
   }
 }
+
+
+export const fetchSingleDelegate = async function(id){
+  try {
+    await connectToDB();
+    const singleDelegate = await Delegate.findById(id);
+    return singleDelegate;
+  } catch (error) {
+    
+  }
+}

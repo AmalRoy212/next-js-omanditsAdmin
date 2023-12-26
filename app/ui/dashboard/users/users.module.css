@@ -53,6 +53,7 @@
 
 .view{
   background-color: teal;
+  cursor: pointer;
 }
 
 .delete{

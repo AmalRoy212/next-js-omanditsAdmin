@@ -43,38 +43,28 @@ async function Sidebar() {
           path : "/dashboard/speakers",
           icon : <GiPublicSpeaker />
         },
-        {
-          title : "Products",
-          path : "/dashboard/products",
-          icon : <FaUserFriends />
-        },
-        {
-          title : "Users",
-          path : "/dashboard/users",
-          icon : <FaUserFriends />
-        },
       ],
     },
-    {
-      title: "Analytics",
-      list: [
-        {
-          title: "Revenue",
-          path: "/dashboard/revenue",
-          icon: <MdWork />,
-        },
-        {
-          title: "Reports",
-          path: "/dashboard/reports",
-          icon: <MdAnalytics />,
-        },
-        {
-          title: "Teams",
-          path: "/dashboard/teams",
-          icon: <MdPeople />,
-        },
-      ],
-    },
+    // {
+    //   title: "Analytics",
+    //   list: [
+    //     {
+    //       title: "Revenue",
+    //       path: "/dashboard/revenue",
+    //       icon: <MdWork />,
+    //     },
+    //     {
+    //       title: "Reports",
+    //       path: "/dashboard/reports",
+    //       icon: <MdAnalytics />,
+    //     },
+    //     {
+    //       title: "Teams",
+    //       path: "/dashboard/teams",
+    //       icon: <MdPeople />,
+    //     },
+    //   ],
+    // },
     {
       title: "User",
       list: [

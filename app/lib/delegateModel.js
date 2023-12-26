@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const UserSchema = new mongoose.Schema({
+const DelegateSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -46,6 +46,6 @@ const UserSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
-const Delegate = mongoose.models.Delegate || mongoose.model('Delegate', UserSchema);
+const Delegate = mongoose.models.Delegate || mongoose.model('Delegate', DelegateSchema);
 
 export default Delegate;
