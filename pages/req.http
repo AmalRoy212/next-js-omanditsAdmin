@@ -14,7 +14,10 @@ Content-Type: application/json
     "numOfEmployees" : "test",
     "lookingFor" : "test",
     "role" : "test",
-    "country" : "test"                                                        
+    "country" : "test",
+    "type" : "test" ,
+    "budget" : "test",
+    "timing" : "test"                                                   
 }
 
 

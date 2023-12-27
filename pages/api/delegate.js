@@ -29,11 +29,14 @@ export default async function addDelegate( req, res ){
       numOfEmployees,
       lookingFor,
       role,
-      country
+      country,
+      type,
+      budget,
+      timing
     } = req.body;
 
     // Validate that all required fields are present
-    if (!name || !email || !jobTitle || !companyName || !phone || !industry || !numOfEmployees || !lookingFor || !role || !country) {
+    if (!name || !email || !jobTitle || !companyName || !phone || !industry || !numOfEmployees || !lookingFor || !role || !country || !type) {
       // If any required field is missing, send a 400 Bad Request response
       return res.status(400).json({ error: 'Missing required fields in the request body' });
     }
@@ -48,7 +51,10 @@ export default async function addDelegate( req, res ){
       numOfEmployees,
       lookingFor,
       role,
-      country
+      country,
+      type,
+      budget,
+      timing
     })
 
     await newDelegate.save();

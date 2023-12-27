@@ -43,6 +43,18 @@ const DelegateSchema = new mongoose.Schema({
   country : {
     type : String,
     required : true
+  },
+  type : {
+    type : String,
+    required : true
+  },
+  budget : {
+    type : String,
+    required : true
+  },
+  timing : {
+    type : String,
+    required : true
   }
 }, { timestamps: true });
 
