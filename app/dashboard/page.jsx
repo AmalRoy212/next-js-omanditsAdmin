@@ -4,8 +4,11 @@ import styles from '../ui/dashboard/dashboard.module.css';
 import Rightbar from '../ui/dashboard/rightbar/Rightbar';
 import Transactions from '../ui/dashboard/transactions/Transactions';
 import Chart from '../ui/dashboard/chart/Chart';
+import { fetchInitialData } from '../lib/data';
 
-function Dashboard() {
+async function Dashboard() {
+
+  const delegates =  await fetchInitialData()
 
   const data = [
     {
@@ -31,7 +34,7 @@ function Dashboard() {
         <div className={styles.cards}>
           {data.map((obj,index) => <Cards key={index} data={obj}/>)}
         </div>
-        <Transactions/>
+        <Transactions delegates={delegates}/>
         <Chart/>
       </div>
       <div className={styles.side}>
