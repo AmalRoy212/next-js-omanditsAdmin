@@ -6,13 +6,30 @@ import Transactions from '../ui/dashboard/transactions/Transactions';
 import Chart from '../ui/dashboard/chart/Chart';
 
 function Dashboard() {
+
+  const data = [
+    {
+      title : "Delegates",
+      number : 0.0,
+      percentage : 0
+    },
+    {
+      title : "Sponsors",
+      number : 0.0,
+      percentage : 0
+    },
+    {
+      title : "Speakers",
+      number : 0.0,
+      percentage : 0
+    }
+  ]
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.main}>
         <div className={styles.cards}>
-          <Cards/>
-          <Cards/>
-          <Cards/>
+          {data.map((obj,index) => <Cards key={index} data={obj}/>)}
         </div>
         <Transactions/>
         <Chart/>
