@@ -1,7 +1,7 @@
 export const authConfig = {
   providers : [],
   pages:{
-    signIn : "/login"
+    signIn : "/"
   },
   callbacks : {
     authorized ({auth, request}){
