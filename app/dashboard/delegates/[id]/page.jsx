@@ -1,6 +1,5 @@
 import React from 'react';
-import styles from "@/app/ui/dashboard/users/SingleUser/singleUser.module.css";
-// import { useParams } from 'next/navigation';
+import styles from "./user.module.css";
 import { fetchSingleDelegate } from '@/app/lib/data';
 
 async function SingleDelegate({ params }) {
