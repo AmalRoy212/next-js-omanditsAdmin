@@ -53,6 +53,7 @@
     width: 100%;
     border: none;
     color: var(--text);
+    margin-bottom: 10px;
 }
 
 .logout:hover{

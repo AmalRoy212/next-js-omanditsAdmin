@@ -4,6 +4,7 @@ import Search from '@/app/ui/dashboard/search/Search';
 import Link from 'next/link';
 import Pagination from '@/app/ui/dashboard/pagination/Pagination';
 import { fetchDelegates } from '@/app/lib/data';
+import PreviewButton from '@/app/ui/dashboard/users/preview/PreviewButton';
 
 async function Delegates({searchParams}) {
 
@@ -11,12 +12,14 @@ async function Delegates({searchParams}) {
   const page  = searchParams?.page || 1;
   const { count, delegate } = await fetchDelegates(q, page);
 
+  const plainObject = JSON.parse(JSON.stringify(delegate));
+
   return (
     <div className={styles.container}>
       <div className={styles.top}>
         <Search placeholder="Search for delegates.."/>
-        <button className={styles.addButton}>Download</button>
-        <Link href="/dashboard/users/add">
+        <PreviewButton delegates={plainObject}/>
+        <Link href="/dashboard/delegates/add">
           <button className={styles.addButton}>Add New</button>
         </Link>
       </div>
@@ -62,6 +65,7 @@ async function Delegates({searchParams}) {
       </table>
 
       <Pagination count={count}/>
+      
     </div>
   )
 }
