@@ -25,53 +25,16 @@ function Transactions({ delegates }) {
                   </div>
                 </td>
                 <td>
-                  <span className={`${styles.status} ${styles.pending}`}>Delegate</span>
+                  {del.type === "delegate" && <span className={`${styles.status} ${styles.pending}`}>{del.type}</span>}
+                  {del.type === "speaker" && <span className={`${styles.status} ${styles.cancelled}`}>{del.type}</span>}
+                  {del.type === "sponsor" && <span className={`${styles.status} ${styles.done}`}>{del.type}</span>}
+                  
                 </td>
                 {/* <td>21-dec-2023</td> */}
                 <td>{del.email}</td>
               </tr>
             )
           })}
-
-          {/* <tr>
-            <td>
-              <div className={styles.user}>
-                <img className={styles.userImage} width={50} height={50} src="https://i.pinimg.com/564x/3a/57/94/3a57945cf1e5c4e102df69024afe4942.jpg" alt="" />
-                Amal
-              </div>
-            </td>
-            <td>
-              <span className={`${styles.status} ${styles.pending}`}>Pending</span>
-            </td>
-            <td>21-dec-2023</td>
-            <td>amal@gmail.com</td>
-          </tr>
-          <tr>
-            <td>
-              <div className={styles.user}>
-                <img className={styles.userImage} width={50} height={50} src="https://i.pinimg.com/564x/3a/57/94/3a57945cf1e5c4e102df69024afe4942.jpg" alt="" />
-                Amal
-              </div>
-            </td>
-            <td>
-              <span className={`${styles.status} ${styles.done}`}>Done</span>
-            </td>
-            <td>21-dec-2023</td>
-            <td>amal@gmail.com</td>
-          </tr>
-          <tr>
-            <td>
-              <div className={styles.user}>
-                <img className={styles.userImage} width={50} height={50} src="https://i.pinimg.com/564x/3a/57/94/3a57945cf1e5c4e102df69024afe4942.jpg" alt="" />
-                Amal
-              </div>
-            </td>
-            <td>
-              <span className={`${styles.status} ${styles.cancelled}`}>Cancelled</span>
-            </td>
-            <td>21-dec-2023</td>
-            <td>amal@gmail.com</td>
-          </tr> */}
         </tbody>
       </table>
     </div>

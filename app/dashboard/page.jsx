@@ -8,12 +8,12 @@ import { fetchInitialData } from '../lib/data';
 
 async function Dashboard() {
 
-  const delegates =  await fetchInitialData()
+  const { count, delegate } =  await fetchInitialData()
 
   const data = [
     {
       title : "Delegates",
-      number : 0.0,
+      number : count,
       percentage : 0
     },
     {
@@ -34,7 +34,7 @@ async function Dashboard() {
         <div className={styles.cards}>
           {data.map((obj,index) => <Cards key={index} data={obj}/>)}
         </div>
-        <Transactions delegates={delegates}/>
+        <Transactions delegates={delegate}/>
         <Chart/>
       </div>
       <div className={styles.side}>

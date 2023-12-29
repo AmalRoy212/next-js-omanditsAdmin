@@ -20,6 +20,7 @@
     "react-dom": "^18",
     "react-icons": "4.11",
     "react-redux": "^9.0.4",
+    "react-spinners": "^0.13.8",
     "recharts": "^2.9.0",
     "use-debounce": "^9.0.4",
     "xlsx": "^0.18.5"

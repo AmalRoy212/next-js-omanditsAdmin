@@ -1,10 +1,12 @@
-"use client"
-
 import React, { useState } from 'react';
 import styles from './loginform.module.css'
 import { authenticate } from '@/app/lib/actions';
+import { useDispatch } from 'react-redux';
+import { setLoader } from '@/app/store/loadingSlice';
 
 function LoginForm() {
+
+  const dispatch = useDispatch();
 
   const [ error, setError ] = useState();
 
@@ -21,7 +23,7 @@ function LoginForm() {
         <h1>Login</h1>
         <input type="text" name="username" id="" placeholder='username' />
         <input type="password" name="password" id="" placeholder='password' />
-        <button>Login</button>
+        <button onClick={() => dispatch(setLoader())}>Login</button>
       </form>
     </div>
   )

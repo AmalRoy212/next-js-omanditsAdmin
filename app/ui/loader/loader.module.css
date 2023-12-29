@@ -1,0 +1,17 @@
+.container{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.holder{
+    background-color:#273350;
+    padding: 1rem;
+    border-radius: 15px;
+}
+
