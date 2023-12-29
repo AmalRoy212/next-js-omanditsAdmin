@@ -19,7 +19,7 @@ export const fetchDelegates = async (q, page) => {
 export const fetchInitialData = async () =>{
   try {
     await connectToDB();
-    const delegate = await Delegate.find().sort().limit(3);
+    const delegate = await Delegate.find().sort({ timestampField: -1 }).limit(3);
     return delegate
   } catch (error) {
     throw new Error(`Failed to fetch delegates: ${error.message}`);

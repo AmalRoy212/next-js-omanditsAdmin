@@ -27,7 +27,7 @@
 .tableHolder{
     width: 100%;
     height: 80%;
-    overflow: auto;
+    overflow-y: auto;
     margin-bottom: 1rem;
 }
 
