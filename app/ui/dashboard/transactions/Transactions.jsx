@@ -27,6 +27,7 @@ function Transactions({ delegates }) {
                   <div className={styles.user}>
                     <img className={styles.userImage} width={50} height={50} src="https://i.pinimg.com/564x/3a/57/94/3a57945cf1e5c4e102df69024afe4942.jpg" alt="" />
                     {del.name}
+                    {" "+del?.lastName ? del.lastName : ''}
                     {del.createdAt.toLocaleDateString('en-US', { month: 'short', day: '2-digit' }) === formattedDate && <div style={{backgroundColor:"red", borderRadius:"10px", fontSize:"10px", padding:"4px"}}>NEW</div> }
                     {/* {console.log(formattedDate , del.createdAt.toLocaleDateString('en-US', { month: 'short', day: '2-digit' }))} */}
                   </div>

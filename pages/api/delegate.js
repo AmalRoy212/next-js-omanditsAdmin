@@ -22,6 +22,7 @@ export default async function addDelegate( req, res ){
   try {
     const {
       name,
+      lastName,
       email,
       jobTitle,
       companyName,
@@ -37,13 +38,14 @@ export default async function addDelegate( req, res ){
     } = req.body;
 
     // Validate that all required fields are present
-    if (!name || !email || !jobTitle || !companyName || !phone || !industry || !numOfEmployees || !lookingFor || !role || !country || !type || !budget || !timing) {
+    if (!name|| !lastName || !email || !jobTitle || !companyName || !phone || !industry || !numOfEmployees || !lookingFor || !role || !country || !type || !budget || !timing) {
       // If any required field is missing, send a 400 Bad Request response
       return res.status(400).json({ error: 'Missing required fields in the request body' });
     }
 
     const newDelegate = new Delegate({
       name,
+      lastName,
       email,
       jobTitle,
       companyName,

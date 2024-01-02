@@ -7,6 +7,10 @@ const DelegateSchema = new mongoose.Schema({
     min: 3,
     max: 20
   },
+  lastName: {
+    type: String,
+    required: true,
+  },
   email: {
     type: String,
     required: true,
