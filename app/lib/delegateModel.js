@@ -4,7 +4,6 @@ const DelegateSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    unique: true,
     min: 3,
     max: 20
   },

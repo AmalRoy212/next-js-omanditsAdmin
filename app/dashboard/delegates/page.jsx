@@ -45,6 +45,7 @@ async function Delegates({searchParams}) {
                     <img src={user.img || "https://img.freepik.com/premium-vector/user-profile-icon-flat-style-member-avatar-vector-illustration-isolated-background-human-permission-sign-business-concept_157943-15752.jpg"}
                       alt="" width={30} height={30} className={styles.userImage} />
                     {user.name}
+
                   </div>
                 </td>
                 <td>{user.email}</td>
