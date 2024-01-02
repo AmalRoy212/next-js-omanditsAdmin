@@ -11,11 +11,19 @@ const ExcelDownload = ({ delegates }) => {
 
   const generateExcel = () => {
     const data = [
-      ["NOS",'Name', 'Email', 'Job Title', "company name", 'phone', "Industry", "NO Employees", "Looking For", "Role", 'Country', 'Type', 'Budget', 'Timing', 'Date'],
+      ["NOS",'First Name', 'Last Name', 'Email', 'Job Title', "company name", 'phone', "Industry", "NO Employees", "Looking For", "Role", 'Country', 'Type', 'Budget', 'Timing', 'Date'],
     ];
 
     delegates.map((del,index) => {
-      data.push(Object.values(del));
+
+      let delegate =  Object.values(del);
+
+      if(!del.lastName){
+        delegate.splice(2, 0, " ");
+        delegate = [...delegate];
+      }
+
+      data.push(delegate);
       data[index+ 1][0] = index + 1
 
       if(index !== 0){

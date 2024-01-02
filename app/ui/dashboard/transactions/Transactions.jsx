@@ -4,7 +4,6 @@ import styles from './transactions.module.css'
 function Transactions({ delegates }) {
 
   const today = new Date();
-
   const formattedDate = today.toLocaleDateString('en-US', { month: 'short', day: '2-digit' });
 
   return (

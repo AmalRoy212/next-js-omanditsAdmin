@@ -38,7 +38,7 @@ async function Dashboard() {
         <Chart/>
       </div>
       <div className={styles.side}>
-        <Rightbar/>
+        <Rightbar notifyDelegate={delegate[0]}/>
       </div>
     </div>
   )

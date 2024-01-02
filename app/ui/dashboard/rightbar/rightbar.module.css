@@ -50,6 +50,7 @@
     border-radius: 10px;
     border: none;
     cursor: pointer;
+    width: 100%;
     /* background-color: #5d57c9;
     color: white; */
 }

@@ -9,7 +9,7 @@ export const fetchDelegates = async (q, page) => {
   try {
     await connectToDB();
     const count = await Delegate.find({ name: { $regex: regex } }).count();
-    const delegate = await Delegate.find({ name : { $regex : regex }}).limit(ITEM_PER_PAGE).skip(ITEM_PER_PAGE * (page-1));
+    const delegate = await Delegate.find({ name : { $regex : regex }}).sort({ createdAt: -1 }).limit(ITEM_PER_PAGE).skip(ITEM_PER_PAGE * (page-1));
     return {count,delegate};
   } catch (error) {
     throw new Error(`Failed to fetch delegates: ${error.message}`);
