@@ -48,6 +48,7 @@ async function Delegates({searchParams}) {
                     <img src={user.img || "https://img.freepik.com/premium-vector/user-profile-icon-flat-style-member-avatar-vector-illustration-isolated-background-human-permission-sign-business-concept_157943-15752.jpg"}
                       alt="" width={30} height={30} className={styles.userImage} />
                     {user.name}
+                    {user.lastName}
                     {user.createdAt.toLocaleDateString('en-US', { month: 'short', day: '2-digit' }) === formattedDate && <div style={{backgroundColor:"red", borderRadius:"10px", fontSize:"10px", padding:"4px"}}>NEW</div> }
                   </div>
                 </td>
