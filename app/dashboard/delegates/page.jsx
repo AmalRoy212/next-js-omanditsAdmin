@@ -3,7 +3,7 @@ import styles from "@/app/ui/dashboard/users/users.module.css";
 import Search from '@/app/ui/dashboard/search/Search';
 import Link from 'next/link';
 import Pagination from '@/app/ui/dashboard/pagination/Pagination';
-import { fetchDelegates } from '@/app/lib/data';
+import { fetchAllDelegates, fetchDelegates } from '@/app/lib/data';
 import PreviewButton from '@/app/ui/dashboard/users/preview/PreviewButton';
 
 async function Delegates({searchParams}) {
@@ -11,14 +11,16 @@ async function Delegates({searchParams}) {
   const q  = searchParams?.q || ""
   const page  = searchParams?.page || 1;
   const { count, delegate } = await fetchDelegates(q, page);
+  const  allDelegates  = await fetchAllDelegates();
 
   const plainObject = JSON.parse(JSON.stringify(delegate));
+  const plainAllDele = JSON.parse(JSON.stringify(allDelegates));
 
   return (
     <div className={styles.container}>
       <div className={styles.top}>
         <Search placeholder="Search for delegates.."/>
-        <PreviewButton delegates={plainObject}/>
+        <PreviewButton delegates={plainObject} plainAllDele={plainAllDele} q={q} />
         <Link href="/dashboard/delegates/add">
           <button className={styles.addButton}>Add New</button>
         </Link>

@@ -16,6 +16,19 @@ export const fetchDelegates = async (q, page) => {
   }
 }
 
+//function fetching all the delegates
+/* request get */
+
+export const fetchAllDelegates = async () => {
+  try {
+    connectToDB();
+    const allDelegates = await Delegate.find()
+    return allDelegates
+  } catch (error) {
+    throw new Error(`Failed to fetch all delegates: ${error.message}`);
+  }
+}
+
 export const fetchInitialData = async () =>{
   try {
     await connectToDB();

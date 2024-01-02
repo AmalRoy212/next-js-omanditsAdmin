@@ -5,16 +5,17 @@ import { activatePopUp } from '@/app/store/popUpSlice';
 import { useSelector, useDispatch } from 'react-redux'
 import ExcelDownload from '../download/Downloader';
 
-function PreviewButton({delegates}) {
+function PreviewButton({delegates, plainAllDele, q}) {
     const dispatch = useDispatch();
     const popUp = useSelector((state) => state.popUp.value);
+    const data = q ? delegates : plainAllDele
   return (
     <>
         <button className={styles.addButton}
             aria-label="Decrement value"
             onClick={() => dispatch(activatePopUp())}
         >Download</button>
-        {popUp && <ExcelDownload delegates={delegates}/>}
+        {popUp && <ExcelDownload delegates={data}/>}
         
     </>
   )
