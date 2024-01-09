@@ -5,19 +5,27 @@ POST http://localhost:3000/api/delegate
 Content-Type: application/json
 
 {
-    "name" : "test",
-    "email" : "test@gmail.com",
-    "jobTitle" : "test",
-    "companyName" : "test",
-    "phone" : "test",
-    "industry" : "test",
-    "numOfEmployees" : "test",
-    "lookingFor" : "test",
-    "role" : "test",
-    "country" : "test",
-    "type" : "test" ,
-    "budget" : "test",
-    "timing" : "test"                                                   
+     "name" : "test",
+      "lastName" : "test",
+      "email" : "test",
+      "jobTitle" : "test",
+      "companyName" : "test",
+      "phone" : "test",
+      "industry" : "test",
+      "numOfEmployees" : "test",
+      "lookingFor" : "test",
+      "role" : "test",
+      "country" : "test",
+      "type" : "test",
+      "budget" : "test",
+      "timing" : "test",
+      "refName" : "test",
+      "refCompanyName" : "test",
+      "refJobTitle" : "test",
+      "refEmail" : "test",
+      "refPhone" : "test"
+
+
 }
 
 

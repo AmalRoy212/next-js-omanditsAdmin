@@ -24,11 +24,11 @@ const NominationSchema = new mongoose.Schema({
     required : true
   },
   refferedBy : {
-    type : string,
+    type : String,
     required : true
   },
   refferedEmail : {
-    type : string,
+    type : String,
     required : true
   }
 }, { timestamps: true });
