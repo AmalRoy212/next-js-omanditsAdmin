@@ -11,7 +11,7 @@ const NominationSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  erfJobTitle: {
+  refJobTitle: {
     type: String,
     required: true,
   },

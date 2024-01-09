@@ -4,7 +4,6 @@ import initMiddleware from '../../app/lib/init-middleware';
 import Delegate from '../../app/lib/delegateModel';
 import connectToDB from '@/app/lib/utils';
 import Nominies from '@/app/lib/nomination';
-// import { createProxyMiddleware } from 'http-proxy-middleware'
 
 const cors = initMiddleware(
     Cors({
@@ -12,12 +11,12 @@ const cors = initMiddleware(
       origin: '*',
     })
   );
-  
+
 /* 
   request : POST
 */
 export default async function addDelegate( req, res ){
-  console.log("am here in the server");
+  // console.log("am here in the server");
   await cors(req, res);
   await connectToDB();
 
