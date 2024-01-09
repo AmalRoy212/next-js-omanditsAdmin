@@ -4,6 +4,7 @@ import { FaUserFriends } from "react-icons/fa";
 import { GoSponsorTiers } from "react-icons/go";
 import MenuLinks from './menuLinks/MenuLinks';
 import { GiPublicSpeaker } from "react-icons/gi";
+import { FaUserTie } from "react-icons/fa";
 import {
   MdDashboard,
   MdWork,
@@ -42,6 +43,11 @@ async function Sidebar() {
           title : "Speakers",
           path : "/dashboard/speakers",
           icon : <GiPublicSpeaker />
+        },
+        {
+          title : "Nominies",
+          path : "/dashboard/nominees",
+          icon : <FaUserTie />
         },
       ],
     },

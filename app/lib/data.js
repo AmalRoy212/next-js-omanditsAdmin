@@ -1,4 +1,5 @@
 import Delegate from "./delegateModel";
+import Nominies from "./nomination";
 import connectToDB from "./utils";
 
 export const fetchDelegates = async (q, page) => {
@@ -46,6 +47,16 @@ export const fetchSingleDelegate = async function(id){
     const singleDelegate = await Delegate.findById(id);
     return singleDelegate;
   } catch (error) {
-    
+    throw new Error(`Failed to fetch single delegate: ${error.message}`);
+  }
+}
+
+export const fetchNominies = async () => {
+  await connectToDB();
+  try {
+    const nominees = await Nominies.find().sort({ createdAt: -1 });
+    return nominees;
+  } catch (error) {
+    throw new Error(`Failed to fetch nominees: ${error.message}`);
   }
 }
