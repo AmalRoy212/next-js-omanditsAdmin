@@ -38,6 +38,7 @@ async function Delegates({searchParams}) {
             {/* <td>Compnay Name</td> */}
             {/* <td>Role</td>  */}
             <td>Actions</td>
+            
           </tr>
         </thead>
         <tbody>
