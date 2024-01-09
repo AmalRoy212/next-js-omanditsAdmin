@@ -1,13 +1,21 @@
+
 "use client"
-import React from 'react';
+
+import React, { useEffect } from 'react';
 import * as XLSX from 'xlsx';
 import styles from "./download.module.css"
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { deactivatePopUp } from '@/app/store/popUpSlice'
+import CheckInp from './CheckInp';
 
 const ExcelDownload = ({ delegates }) => {
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
+  const removeFromList = (_id = null) =>{
+    if(_id === null) return 1
+    delegates = delegates.filter((dele) => dele._id !== _id);
+  }
 
   const generateExcel = () => {
     const data = [
@@ -74,11 +82,15 @@ const ExcelDownload = ({ delegates }) => {
               <tr>
                 <td>Name</td>
                 <td>email</td>
+                {/* <td>Select</td> */}
               </tr>
             </thead>
             <tbody>
               {delegates && delegates.map((dele, index) => (
                 <tr key={index}>
+                  <td>
+                    <CheckInp key={index} removeFromList={removeFromList} _id={dele._id} />
+                  </td>
                   <td>{dele.name}</td>
                   <td>{dele.email}</td>
                 </tr>

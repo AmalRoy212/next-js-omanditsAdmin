@@ -49,6 +49,7 @@
   border-radius: 5px;
   color: var(--text);
   border: none;
+  cursor: pointer;
 }
 
 .view{
@@ -58,4 +59,9 @@
 
 .delete{
   background-color: crimson;
+}
+
+.deleted{
+  background-color: yellowgreen;
+  color: black;
 }

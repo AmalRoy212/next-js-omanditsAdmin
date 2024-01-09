@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Pagination from '@/app/ui/dashboard/pagination/Pagination';
 import { fetchAllDelegates, fetchDelegates } from '@/app/lib/data';
 import PreviewButton from '@/app/ui/dashboard/users/preview/PreviewButton';
+import DeleteButton from '@/app/ui/dashboard/users/delete/DeleteButton';
 
 async function Delegates({searchParams}) {
 
@@ -33,9 +34,9 @@ async function Delegates({searchParams}) {
           <tr>
             <td>Name</td>
             <td>email</td>
-            <td>Job Title</td>
-            <td>Compnay Name</td>
-            <td>Role</td>
+            <td>Date</td>
+            {/* <td>Compnay Name</td> */}
+            {/* <td>Role</td>  */}
             <td>Actions</td>
           </tr>
         </thead>
@@ -53,16 +54,17 @@ async function Delegates({searchParams}) {
                   </div>
                 </td>
                 <td>{user.email}</td>
-                {/* <td>{user.createdAt?.toString().slice(4, 16)}</td> */}
-                <td>{user.jobTitle}</td>
-                <td>{user.companyName}</td>
-                <td>{user.role}</td>
+                <td>{user.createdAt?.toString().slice(4, 16)}</td>
+                {/* <td>{user.jobTitle}</td>
+                <td>{user.companyName}</td> */}
+                {/* <td>{user.role}</td> */}
                 <td>
                   <div className={styles.buttons}>
                     <Link href={`/dashboard/delegates/${user._id}`}>
                       <button className={`${styles.button} ${styles.view}`}>view</button>
                     </Link>
-                    {/* <button className={`${styles.button} ${styles.delete}`}>delete</button> */}
+                    <DeleteButton />
+                    {/* <button onClick={() => handleDelete(user._id)} className={`${styles.button} ${styles.delete}`}>delete</button> */}
                   </div>
                 </td>
               </tr>
