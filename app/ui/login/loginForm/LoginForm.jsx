@@ -21,8 +21,8 @@ function LoginForm() {
         <img src="https://omandits.com/assets/images/dits.png" width={50} height={50} alt="" />
         <h5 style={{color:"red"}}>{error && error}</h5>
         <h1>Login</h1>
-        <input type="text" name="username" id="" placeholder='username' />
-        <input type="password" name="password" id="" placeholder='password' />
+        <input type="text" name="username" id="usr" placeholder='username' />
+        <input type="password" name="password" id="pss" placeholder='password' />
         <button onClick={() => dispatch(setLoader())}>Login</button>
       </form>
     </div>

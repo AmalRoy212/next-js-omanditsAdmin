@@ -3,17 +3,17 @@
 
 import React, { useState } from 'react';
 
-function CheckInp({ removeFromList, _id }) {
+function CheckInp({ removeFromList, _id, addToCurrentList }) {
   
   const [ checkedStatus, setCheckedStatus ] = useState(true);
 
   const handleRemove = () => {
-    setCheckedStatus(false);
-    removeFromList(_id);
+    checkedStatus ? setCheckedStatus(false) : setCheckedStatus(true);
+    checkedStatus ? removeFromList(_id) : addToCurrentList(_id);
   }
     
   return (
-    <td><input type="checkbox" checked={checkedStatus} onClick={handleRemove} id="check" /></td>
+    <input type="checkbox" checked={checkedStatus} onChange={handleRemove} id="check" />
   )
 }
 

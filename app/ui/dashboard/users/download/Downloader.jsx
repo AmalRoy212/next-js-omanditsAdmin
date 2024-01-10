@@ -1,22 +1,45 @@
 
 "use client"
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as XLSX from 'xlsx';
 import styles from "./download.module.css"
-import { useDispatch } from 'react-redux'
 import { deactivatePopUp } from '@/app/store/popUpSlice'
 import CheckInp from './CheckInp';
+import { useDispatch } from 'react-redux'
+
+
 
 const ExcelDownload = ({ delegates }) => {
 
+  const removedObjs = []
+
   const dispatch = useDispatch();
 
-  const removeFromList = (_id = null) =>{
-    if(_id === null) return 1
-    delegates = delegates.filter((dele) => dele._id !== _id);
-  }
+  const removeFromList = (_id = null) => {
+    if (_id === null) return;
+    delegates = delegates.filter((dele) => {
+      if(dele._id == _id){
+        removedObjs.push(dele);
+        return false
+      }
+      return dele._id !== _id
+    })
+  };
 
+  const addToCurrentList = (_id = null) => {
+    if (_id === null) return;
+    
+    const selectedObject = removedObjs.filter((obj) => {
+      return obj._id == _id
+    });
+
+    if (selectedObject) {
+      delegates = [...delegates, selectedObject[0]];
+    }
+  };
+  
+  
   const generateExcel = () => {
     const data = [
       ["NOS",'First Name', 'Last Name', 'Email', 'Job Title', "company name", 'phone', "Industry", "NO Employees", "Looking For", "Role", 'Country', 'Type', 'Budget', 'Timing', 'Date'],
@@ -81,30 +104,30 @@ const ExcelDownload = ({ delegates }) => {
             <thead>
               <tr>
                 <td>Name</td>
-                <td>email</td>
-                {/* <td>Select</td> */}
+                <td>Email</td>
               </tr>
             </thead>
             <tbody>
               {delegates && delegates.map((dele, index) => (
                 <tr key={index}>
                   <td>
-                    <CheckInp key={index} removeFromList={removeFromList} _id={dele._id} />
+                    <CheckInp key={index} addToCurrentList={addToCurrentList} removeFromList={removeFromList} _id={dele._id} />
                   </td>
-                  <td>{dele.name}</td>
-                  <td>{dele.email}</td>
+                  <td>{dele.name || dele.refName}</td>
+                  <td>{dele.email || dele.refEmail}</td>
                 </tr>
-              ))} 
+              ))}
             </tbody>
           </table>
         </div>
         <div className={styles.btnHolder}>
-          <button className={styles.cancel}  onClick={() => dispatch(deactivatePopUp())}>Cancel</button>
+          <button className={styles.cancel} onClick={() => dispatch(deactivatePopUp())}>Cancel</button>
           <button className={styles.downButton} onClick={generateExcel}>Download Excel</button>
         </div>
       </div>
     </div>
   );
 };
+
 
 export default ExcelDownload;
