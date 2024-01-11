@@ -6,13 +6,16 @@ import * as XLSX from 'xlsx';
 import styles from "./download.module.css"
 import { deactivatePopUp } from '@/app/store/popUpSlice'
 import CheckInp from './CheckInp';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { setActiveFalse, setActiveTrue } from '@/app/store/selectSlice';
 
 
 
 const ExcelDownload = ({ delegates }) => {
 
-  const removedObjs = []
+  const removedObjs = [];
+ 
+  const select = useSelector((state) => state.select.value);
 
   const dispatch = useDispatch();
 
@@ -96,6 +99,20 @@ const ExcelDownload = ({ delegates }) => {
     document.body.removeChild(link);
   };
 
+  const clickHandler = () => {
+    select ? 
+    (
+    
+        dispatch(setActiveFalse())
+    
+    )  
+      : 
+    (
+    
+        dispatch(setActiveTrue())
+    
+    )
+  }
   return (
     <div className={styles.container}>
       <div className={styles.holder}>
@@ -103,6 +120,9 @@ const ExcelDownload = ({ delegates }) => {
           <table className={styles.table}>
             <thead>
               <tr>
+                <td>
+                  <input type='radio' checked={select} onChange={() => {console.log("changed");}} onClick={clickHandler} className={styles.selectbutton}></input> <span>All</span>
+                </td>
                 <td>Name</td>
                 <td>Email</td>
               </tr>

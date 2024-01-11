@@ -14,17 +14,22 @@ async function Dashboard() {
     {
       title : "Delegates",
       number : count,
-      percentage : 0
+      percentage : 0,
+      route : "/dashboard/delegates"
     },
     {
       title : "Sponsors",
       number : 0.0,
-      percentage : 0
+      percentage : 0,
+      route : '/dashboard/sponsors'
+
     },
     {
       title : "Speakers",
       number : 0.0,
-      percentage : 0
+      percentage : 0,
+      route : '/dashboard/speakers'
+
     }
   ]
 
@@ -32,7 +37,7 @@ async function Dashboard() {
     <div className={styles.wrapper}>
       <div className={styles.main}>
         <div className={styles.cards}>
-          {data.map((obj,index) => <Cards key={index} data={obj}/>)}
+          {data.map((obj,index) => <Cards key={index} data={obj} route={obj.route}/>)}
         </div>
         <Transactions delegates={delegate}/>
         <Chart/>

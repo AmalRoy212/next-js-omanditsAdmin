@@ -80,3 +80,9 @@
     align-items: center;
     width: 80%;
 }
+.selectbutton{
+    width: 15px;
+    height: 15px;
+    background-color: rgb(31, 31, 31);
+    border: none;
+}
