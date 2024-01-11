@@ -120,7 +120,7 @@ const ExcelDownload = ({ delegates }) => {
           <table className={styles.table}>
             <thead>
               <tr>
-                <td>
+                <td style={{ display:'flex', justifyContent : "center", alignItems : "center"}}>
                   <input type='radio' checked={select} onChange={() => {console.log("changed");}} onClick={clickHandler} className={styles.selectbutton}></input> <span>All</span>
                 </td>
                 <td>Name</td>
@@ -128,6 +128,7 @@ const ExcelDownload = ({ delegates }) => {
               </tr>
             </thead>
             <tbody>
+              <div style={{marginTop:"2rem"}}></div>
               {delegates && delegates.map((dele, index) => (
                 <tr key={index}>
                   <td>
