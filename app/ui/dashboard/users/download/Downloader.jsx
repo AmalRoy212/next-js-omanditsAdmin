@@ -13,14 +13,16 @@ import { setActiveFalse, setActiveTrue } from '@/app/store/selectSlice';
 
 const ExcelDownload = ({ delegates, headings }) => {
   
-  const [currentDelegates, setCurrentDelegates] = useState(delegates);
- 
-  const select = useSelector((state) => state.select.value);
+  const [ currentDelegates, setCurrentDelegates ] = useState(delegates);
+  const [ catchObject, setCatchObject ] = useState();
+  const [ clicks, setClicks ] = useState(0)
 
+  const select = useSelector((state) => state.select.value);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if(!select)setCurrentDelegates([])
+    if(!select)setCurrentDelegates([]);
+    if(catchObject && clicks === 1) setCurrentDelegates(catchObject);
   },[select])
 
   const removeFromList = (_id = null) => {
@@ -31,13 +33,10 @@ const ExcelDownload = ({ delegates, headings }) => {
 
   const addToCurrentList = (_id = null) => {
     if (_id === null) return;
-    
     const filteredDelegates = delegates.filter((obj) => obj._id === _id);
-    if(!select && currentDelegates.length === delegates.length){
-      setCurrentDelegates([...filteredDelegates]);
-    } else{
-      setCurrentDelegates([...currentDelegates, ...filteredDelegates]);
-    }
+    setClicks((prevClicks) => prevClicks + 1);
+    setCatchObject(filteredDelegates)
+    setCurrentDelegates([...currentDelegates, ...filteredDelegates]);
   };
   
   
