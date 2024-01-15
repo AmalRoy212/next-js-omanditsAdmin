@@ -11,7 +11,7 @@ import { setActiveFalse, setActiveTrue } from '@/app/store/selectSlice';
 
 
 
-const ExcelDownload = ({ delegates }) => {
+const ExcelDownload = ({ delegates, headings }) => {
   
   const [currentDelegates, setCurrentDelegates] = useState(delegates);
  
@@ -43,14 +43,14 @@ const ExcelDownload = ({ delegates }) => {
   
   const generateExcel = (delegates) => {
     const data = [
-      ["NOS",'First Name', 'Last Name', 'Email', 'Job Title', "company name", 'phone', "Industry", "NO Employees", "Looking For", "Role", 'Country', 'Type', 'Budget', 'Timing', 'Date'],
+      headings,
     ];
 
     delegates.map((del,index) => {
 
       let delegate =  Object.values(del);
 
-      if(!del.lastName){
+      if(!del.lastName && headings.length > 10){
         delegate.splice(2, 0, " ");
         delegate = [...delegate];
       }

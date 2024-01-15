@@ -87,3 +87,16 @@ export const fetchAllNominees = async function () {
     throw new Error(`Failed to fetch nominees: ${error.message}`);
   }
 };
+
+
+//fetching single refference 
+
+export const fetchSingleNominee = async function(id){
+  try {
+    await connectToDB();
+    const singleNominee = await Nominies.findById(id);
+    return singleNominee;
+  } catch (error) {
+    throw new Error(`Failed to fetch nominee: ${error.message}`);
+  }
+}

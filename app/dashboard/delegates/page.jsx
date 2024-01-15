@@ -20,11 +20,13 @@ async function Delegates({searchParams}) {
   const today = new Date();
   const formattedDate = today.toLocaleDateString('en-US', { month: 'short', day: '2-digit' });
 
+  const headings = ["NOS",'First Name', 'Last Name', 'Email', 'Job Title', "company name", 'phone', "Industry", "NO Employees", "Looking For", "Role", 'Country', 'Type', 'Budget', 'Timing', 'Date']
+
   return (
     <div className={styles.container}>
       <div className={styles.top}>
         <Search placeholder="Search for delegates.."/>
-        <PreviewButton delegates={plainObject} plainAllDele={plainAllDele} q={q} />
+        <PreviewButton delegates={plainObject} plainAllDele={plainAllDele} q={q} headings={headings} />
         <Link href="/dashboard/delegates/add">
           <button className={styles.addButton}>Add New</button>
         </Link>
