@@ -1,7 +1,7 @@
 
 "use client"
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as XLSX from 'xlsx';
 import styles from "./download.module.css"
 import { deactivatePopUp } from '@/app/store/popUpSlice'
@@ -12,38 +12,36 @@ import { setActiveFalse, setActiveTrue } from '@/app/store/selectSlice';
 
 
 const ExcelDownload = ({ delegates }) => {
-
-  const removedObjs = [];
+  
+  const [currentDelegates, setCurrentDelegates] = useState(delegates);
  
   const select = useSelector((state) => state.select.value);
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if(!select)setCurrentDelegates([])
+  },[select])
+
   const removeFromList = (_id = null) => {
     if (_id === null) return;
-    delegates = delegates.filter((dele) => {
-      if(dele._id == _id){
-        removedObjs.push(dele);
-        return false
-      }
-      return dele._id !== _id
-    })
+    delegates = currentDelegates.filter((dele) => dele._id !== _id);
+    setCurrentDelegates(delegates);
   };
 
   const addToCurrentList = (_id = null) => {
     if (_id === null) return;
     
-    const selectedObject = removedObjs.filter((obj) => {
-      return obj._id == _id
-    });
-
-    if (selectedObject) {
-      delegates = [...delegates, selectedObject[0]];
+    const filteredDelegates = delegates.filter((obj) => obj._id === _id);
+    if(!select && currentDelegates.length === delegates.length){
+      setCurrentDelegates([...filteredDelegates]);
+    } else{
+      setCurrentDelegates([...currentDelegates, ...filteredDelegates]);
     }
   };
   
   
-  const generateExcel = () => {
+  const generateExcel = (delegates) => {
     const data = [
       ["NOS",'First Name', 'Last Name', 'Email', 'Job Title', "company name", 'phone', "Industry", "NO Employees", "Looking For", "Role", 'Country', 'Type', 'Budget', 'Timing', 'Date'],
     ];
@@ -100,18 +98,13 @@ const ExcelDownload = ({ delegates }) => {
   };
 
   const clickHandler = () => {
-    select ? 
-    (
-    
-        dispatch(setActiveFalse())
-    
-    )  
-      : 
-    (
-    
-        dispatch(setActiveTrue())
-    
-    )
+    select ? (() =>{
+      dispatch(setActiveFalse())
+      setCurrentDelegates([])
+    })() : (() => {
+      dispatch(setActiveTrue());
+      setCurrentDelegates(delegates);
+    })()
   }
   return (
     <div className={styles.container}>
@@ -121,14 +114,18 @@ const ExcelDownload = ({ delegates }) => {
             <thead>
               <tr>
                 <td style={{ display:'flex', justifyContent : "center", alignItems : "center"}}>
-                  <input type='radio' checked={select} onChange={() => {console.log("changed");}} onClick={clickHandler} className={styles.selectbutton}></input> <span>All</span>
+                  <input type='radio' checked={select} onChange={() => {}} onClick={clickHandler} className={styles.selectbutton}></input> <span>All</span>
                 </td>
                 <td>Name</td>
                 <td>Email</td>
               </tr>
             </thead>
             <tbody>
-              <div style={{marginTop:"2rem"}}></div>
+              <tr>
+                <td>
+                  {/* <div style={{marginTop:"2rem"}}></div> */}
+                </td>
+              </tr>
               {delegates && delegates.map((dele, index) => (
                 <tr key={index}>
                   <td>
@@ -143,7 +140,7 @@ const ExcelDownload = ({ delegates }) => {
         </div>
         <div className={styles.btnHolder}>
           <button className={styles.cancel} onClick={() => dispatch(deactivatePopUp())}>Cancel</button>
-          <button className={styles.downButton} onClick={generateExcel}>Download Excel</button>
+          <button className={styles.downButton} onClick={() => generateExcel(currentDelegates)}>Download Excel</button>
         </div>
       </div>
     </div>
