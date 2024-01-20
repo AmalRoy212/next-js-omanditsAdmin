@@ -75,7 +75,7 @@ export default async function addDelegate( req, res ){
 
     res.json({ key: "200 ok success" });
   } catch (error) {
-    throw new Error(`Failed to create delegate ${error}`);
+    throw new Error({error : `Failed to create delegate ${error}`});
   }
 
   // revalidatePath('/dashboard/users');
