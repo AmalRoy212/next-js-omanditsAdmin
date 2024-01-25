@@ -76,6 +76,8 @@ export default async function addDelegate( req, res ){
     res.json({ key: "200 ok success" });
   } catch (error) {
     throw new Error({error : `Failed to create delegate ${error}`});
+    // console.error('Error creating delegate:', error);
+    // return res.status(500).json({ error: 'Internal Server Error' });
   }
 
   // revalidatePath('/dashboard/users');
