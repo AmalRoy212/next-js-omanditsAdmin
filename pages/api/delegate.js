@@ -16,7 +16,7 @@ const cors = initMiddleware(
   request : POST
 */
 export default async function addDelegate( req, res ){
-  // console.log("am here in the server");
+
   await cors(req, res);
   await connectToDB();
 
@@ -66,18 +66,26 @@ export default async function addDelegate( req, res ){
       timing
     });
 
-    await newDelegate.save();
-
+    if(newDelegate){ 
+      await newDelegate.save();
+    }else{
+      return res.status(500).json({ error: 'There is an issue with creating delegate' });
+    }    
+    
     if( refName, refCompanyName, refJobTitle, refEmail, refPhone ){
       const nominie = new Nominies({refName, refCompanyName, refJobTitle, refEmail, refPhone, refferedBy : name, refferedEmail : email});
-      await nominie.save();
+      if(nominie){
+        await nominie.save();
+      }else{
+        return res.status(500).json({ error: 'There is an issue with creating delegate nominie' });
+      }
     }
 
-    res.json({ key: "200 ok success" });
+    res.status(201).json({ message: 'User created successfully' });
   } catch (error) {
-    throw new Error({error : `Failed to create delegate ${error}`});
+    // throw new Error({error : `Failed to create delegate ${error}`});
     // console.error('Error creating delegate:', error);
-    // return res.status(500).json({ error: 'Internal Server Error' });
+    return res.status(500).json({ error: 'There is an issue with creating delegate'});
   }
 
   // revalidatePath('/dashboard/users');
