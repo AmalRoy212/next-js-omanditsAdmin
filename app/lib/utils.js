@@ -9,7 +9,7 @@ async function connectToDB(){
     conncetions.isConnected = db.connections[0].readyState;
     console.log("connected");
   } catch (error) {
-    throw new Error("Error on connnecting with db",error);
+    throw new Error("Error on connnecting with db");
   }
 }
 

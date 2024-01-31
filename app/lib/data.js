@@ -2,14 +2,15 @@ import Delegate from "./delegateModel";
 import Nominies from "./nomination";
 import connectToDB from "./utils";
 
+//fetchinig all delegate with pagination
 export const fetchDelegates = async (q, page) => {
   const regex = new RegExp(q, "i");
   const ITEM_PER_PAGE = 7;
 
   try {
     await connectToDB();
-    const count = await Delegate.find({ name: { $regex: regex } }).count();
-    const delegate = await Delegate.find({ name: { $regex: regex } })
+    const count = await Delegate.find({ name: { $regex: regex }, type: { $eq: "delegate" } }).count();
+    const delegate = await Delegate.find({ name: { $regex: regex }, type: { $eq: "delegate" } })
       .sort({ createdAt: -1 })
       .limit(ITEM_PER_PAGE)
       .skip(ITEM_PER_PAGE * (page - 1));
@@ -19,24 +20,78 @@ export const fetchDelegates = async (q, page) => {
   }
 };
 
+//fetching all speakers with pagination
+export const fetchSpeakers = async (q, page) => {
+  const regex = new RegExp(q, "i");
+  const ITEM_PER_PAGE = 7;
+
+  try {
+    await connectToDB();
+    const count = await Delegate.find({ name: { $regex: regex }, type: { $eq: "speaker" } }).count();
+    const speakers = await Delegate.find({ name: { $regex: regex }, type: { $eq: "speaker" } })
+      .sort({ createdAt: -1 })
+      .limit(ITEM_PER_PAGE)
+      .skip(ITEM_PER_PAGE * (page - 1));
+    return { count, speakers };
+  } catch (error) {
+    throw new Error(`Failed to fetch delegates: ${error.message}`);
+  }
+};
+
+
+//fetching all sponsors with pagination
+export const fetchSponsors = async (q, page) => {
+  const regex = new RegExp(q, "i");
+  const ITEM_PER_PAGE = 7;
+
+  try {
+    await connectToDB();
+    const count = await Delegate.find({ name: { $regex: regex }, type: { $eq: "sponsor" } }).count();
+    const sponsors = await Delegate.find({ name: { $regex: regex }, type: { $eq: "sponsor" } })
+      .sort({ createdAt: -1 })
+      .limit(ITEM_PER_PAGE)
+      .skip(ITEM_PER_PAGE * (page - 1));
+    return { count, sponsors };
+  } catch (error) {
+    throw new Error(`Failed to fetch delegates: ${error.message}`);
+  }
+};
+
+
 //function fetching all the delegates
 /* request get */
 
+//fetching all delegates for downloadin pdf
 export const fetchAllDelegates = async () => {
   try {
     connectToDB();
-    const allDelegates = await Delegate.find();
-    allDelegates.forEach((delegate) => {
-      Object.defineProperty(delegate, 'removed', {
-        value: false,
-        writable: true,
-        enumerable: true,
-        configurable: true,
-      });
-    });
-    return allDelegates;
+    const filteredDelegates = await Delegate.find({ type: { $eq: "delegate" } });
+    return filteredDelegates
   } catch (error) {
     throw new Error(`Failed to fetch all delegates: ${error.message}`);
+  }
+};
+
+// fetching all speakers for download pdf 
+export const fetchAllSpeakers = async () => {
+  try {
+    connectToDB();
+    const filteredSpekaers = await Delegate.find({ type: { $eq: "speaker" } });
+    return filteredSpekaers
+  } catch (error) {
+    throw new Error(`Failed to fetch all Speakers: ${error.message}`);
+  }
+};
+
+
+// fetching all sponsors for download pdf 
+export const fetchAllSponsors = async () => {
+  try {
+    connectToDB();
+    const filteredSponsors = await Delegate.find({ type: { $eq: "sponsor" } });
+    return filteredSponsors
+  } catch (error) {
+    throw new Error(`Failed to fetch all Sponsors: ${error.message}`);
   }
 };
 
