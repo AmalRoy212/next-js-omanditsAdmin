@@ -27,7 +27,7 @@ async function SingelNominee({ params }) {
           <input type="text" name="industry" value={nominee.refJobTitle} id="industry" />
           <label>Reffered by</label>
           <input type="text" name="industry" value={nominee.refferedBy} id="industry" />
-          <label>Nominee job Title</label>
+          <label>Refference email</label>
           <input type="text" name="industry" value={nominee.refferedEmail} id="industry" />
           <label>Date</label>
           <input type="text" name="industry" value={nominee.createdAt?.toString().slice(4, 16)} id="industry" />

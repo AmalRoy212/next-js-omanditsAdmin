@@ -7,11 +7,11 @@ import Nominies from '@/app/lib/nomination';
 
 
 const cors = initMiddleware(
-    Cors({
-      methods: ['POST'], // Add the HTTP methods you need
-      origin: '*',
-    })
-  );
+  Cors({
+    methods: ['POST'], // Add the HTTP methods you need
+    origin: '*',
+  })
+);
 
 /* 
   request : POST
