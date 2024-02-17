@@ -9,7 +9,6 @@ function Loader() {
 
   return (
     <div className={styles.container}>
-        {console.log(loading)}
         {loading && 
             <div className={styles.holder}>
               <div className="sweet-loading">

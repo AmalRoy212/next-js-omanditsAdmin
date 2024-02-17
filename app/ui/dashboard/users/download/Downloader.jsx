@@ -1,7 +1,7 @@
 
 "use client"
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as XLSX from 'xlsx';
 import styles from "./download.module.css"
 import { deactivatePopUp } from '@/app/store/popUpSlice'
@@ -100,18 +100,7 @@ const ExcelDownload = ({ delegates }) => {
   };
 
   const clickHandler = () => {
-    select ? 
-    (
-    
-        dispatch(setActiveFalse())
-    
-    )  
-      : 
-    (
-    
-        dispatch(setActiveTrue())
-    
-    )
+    select ? dispatch(setActiveFalse()) : dispatch(setActiveTrue())
   }
   return (
     <div className={styles.container}>
@@ -121,7 +110,7 @@ const ExcelDownload = ({ delegates }) => {
             <thead>
               <tr>
                 <td style={{ display:'flex', justifyContent : "center", alignItems : "center"}}>
-                  <input type='radio' checked={select} onChange={() => {console.log("changed");}} onClick={clickHandler} className={styles.selectbutton}></input> <span>All</span>
+                  <input type='radio' checked={select} onChange='' onClick={clickHandler} className={styles.selectbutton}></input> <span>All</span>
                 </td>
                 <td>Name</td>
                 <td>Email</td>

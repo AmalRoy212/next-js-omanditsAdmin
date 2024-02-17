@@ -10,11 +10,9 @@ export const selectSlice = createSlice({
   reducers: {
     setActiveFalse: ( state ) => {
       state.value = false;
-      console.log(state.value, "from setactiveFalse");
     },
     setActiveTrue: ( state ) => {
       state.value = true;
-      console.log(state.value, "from setactiveTrue");
     },
   },
 })

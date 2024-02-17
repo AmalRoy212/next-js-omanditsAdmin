@@ -54,7 +54,6 @@ export const setAdmin = async function (){
     await connectToDB();
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD, salt);
-    console.log(process.env.ADMIN_PASSWORD);
     const newAdmin = new Admin({
       username: process.env.ADMIN_USERNAME,
       password : hashedPassword,
