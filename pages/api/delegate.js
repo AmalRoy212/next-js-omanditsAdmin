@@ -5,18 +5,20 @@ import Delegate from '../../app/lib/delegateModel';
 import connectToDB from '@/app/lib/utils';
 import Nominies from '@/app/lib/nomination';
 
+
 const cors = initMiddleware(
-    Cors({
-      methods: ['POST'], // Add the HTTP methods you need
-      origin: '*',
-    })
-  );
+  Cors({
+    methods: ['POST'], // Add the HTTP methods you need
+    origin: '*',
+  })
+);
 
 /* 
   request : POST
 */
+
 export default async function addDelegate( req, res ){
-  // console.log("am here in the server");
+
   await cors(req, res);
   await connectToDB();
 
@@ -44,10 +46,14 @@ export default async function addDelegate( req, res ){
     } = req.body;
 
     // Validate that all required fields are present
-    if (!name|| !lastName || !email || !jobTitle || !companyName || !phone || !industry || !numOfEmployees || !lookingFor || !role || !country || !type || !budget || !timing) {
+    // Validate that all required fields are present
+    if (!name || !lastName || !email || !jobTitle || !companyName || !phone || !industry || !numOfEmployees || !lookingFor || !role || !country || !type || !budget || !timing) {
       // If any required field is missing, send a 400 Bad Request response
-      return res.status(400).json({ error: 'Missing required fields in the request body' });
+      console.log("here");
+      const missingFields = ['name', 'lastName', 'email',]; // List all required fields
+      return res.status(400).json({ error: `Missing required fields: ${missingFields.join(', ')}` });
     }
+
 
     const newDelegate = new Delegate({
       name,
@@ -66,16 +72,25 @@ export default async function addDelegate( req, res ){
       timing
     });
 
-    await newDelegate.save();
-
+    if(newDelegate){ 
+      await newDelegate.save();
+    }else{
+      return res.status(500).json({ error: 'There is an issue with creating delegate' });
+    }    
+    
     if( refName, refCompanyName, refJobTitle, refEmail, refPhone ){
       const nominie = new Nominies({refName, refCompanyName, refJobTitle, refEmail, refPhone, refferedBy : name, refferedEmail : email});
-      await nominie.save();
+      if(nominie){
+        await nominie.save();
+      }else{
+        return res.status(500).json({ error: 'There is an issue with creating delegate nominie' });
+      }
     }
-
-    res.json({ key: "200 ok success" });
+    res.status(201).json({ message: 'User created successfully' });
   } catch (error) {
-    throw new Error(`Failed to create delegate ${error}`);
+    // throw new Error({error : `Failed to create delegate ${error}`});
+    console.error('Error creating delegate:', error);
+    return res.status(500).json({ error: 'There is an issue with creating delegate'});
   }
 
   // revalidatePath('/dashboard/users');

@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./table.module.css";
 import DeleteButton from "../users/delete/DeleteButton";
+import Link from 'next/link'
 
 function Table({ headings, data }) {
   const today = new Date();
@@ -52,18 +53,18 @@ function Table({ headings, data }) {
             </td>
             <td>{nom.refEmail}</td>
             <td>{nom.refPhone}</td>
-            <td>{nom.refCompanyName}</td>
-            <td>{nom.refJobTitle}</td>
-            <td>{nom.refferedBy}</td>
-            <td>{nom.refferedEmail}</td>
+            {/* <td>{nom.refCompanyName}</td> */}
+            {/* <td>{nom.refJobTitle}</td> */}
+            {/* <td>{nom.refferedBy}</td> */}
+            {/* <td>{nom.refferedEmail}</td> */}
             <td>
-              {/* <div className={styles.buttons}>
-                      <Link href={`/dashboard/delegates/`}>
-                      <button className={`${styles.button} ${styles.view}`}>view</button>
-                      </Link>
-                      <DeleteButton />
-                      <button onClick={() => handleDelete(user._id)} className={`${styles.button} ${styles.delete}`}>delete</button>
-                  </div> */}
+              <div className={styles.buttons}>
+                <Link href={`/dashboard/nominees/${nom._id}`}>
+                  <button className={`${styles.button} ${styles.view}`}>view</button>
+                </Link>
+                {/* <DeleteButton />
+                <button onClick={() => handleDelete(user._id)} className={`${styles.button} ${styles.delete}`}>delete</button> */}
+              </div>
             </td>
           </tr>
         ))}

@@ -7,7 +7,7 @@ Content-Type: application/json
 {
      "name" : "test",
       "lastName" : "test",
-      "email" : "test",
+      "email" : "test@t",
       "jobTitle" : "test",
       "companyName" : "test",
       "phone" : "test",
@@ -24,8 +24,6 @@ Content-Type: application/json
       "refJobTitle" : "test",
       "refEmail" : "test",
       "refPhone" : "test"
-
-
 }
 
 

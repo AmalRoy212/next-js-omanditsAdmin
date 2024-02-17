@@ -20,11 +20,13 @@ async function Delegates({searchParams}) {
   const today = new Date();
   const formattedDate = today.toLocaleDateString('en-US', { month: 'short', day: '2-digit' });
 
+  const headings = ["NOS",'First Name', 'Last Name', 'Email', 'Job Title', "company name", 'phone', "Industry", "NO Employees", "Looking For", "Role", 'Country', 'Type', 'Budget', 'Timing', 'Date']
+
   return (
     <div className={styles.container}>
       <div className={styles.top}>
         <Search placeholder="Search for delegates.."/>
-        <PreviewButton delegates={plainObject} plainAllDele={plainAllDele} q={q} />
+        <PreviewButton delegates={plainObject} plainAllDele={plainAllDele} q={q} headings={headings} />
         <Link href="/dashboard/delegates/add">
           <button className={styles.addButton}>Add New</button>
         </Link>
@@ -49,7 +51,7 @@ async function Delegates({searchParams}) {
                   <div className={styles.user}>
                     <img src={user.img || "https://img.freepik.com/premium-vector/user-profile-icon-flat-style-member-avatar-vector-illustration-isolated-background-human-permission-sign-business-concept_157943-15752.jpg"}
                       alt="" width={30} height={30} className={styles.userImage} />
-                    {user.name}
+                    {user.name} {" "}{" "}
                     {user.lastName}
                     {user.createdAt.toLocaleDateString('en-US', { month: 'short', day: '2-digit' }) === formattedDate && <div style={{backgroundColor:"red", borderRadius:"10px", fontSize:"10px", padding:"4px"}}>NEW</div> }
                   </div>
