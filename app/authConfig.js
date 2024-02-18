@@ -9,6 +9,7 @@ export const authConfig = {
       const isOnDashboard = request.nextUrl.pathname.startsWith("/dashboard");
 
       if (request.nextUrl.pathname.startsWith("/checkin")) return true
+      if (request.nextUrl.pathname.startsWith("/delegates")) return true
       
       if(isOnDashboard){
         if(isLoggedIn) return true;

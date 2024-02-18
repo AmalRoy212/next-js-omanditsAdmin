@@ -72,7 +72,6 @@ const ConfettiComponent = () => {
         </div>
         <h1>Verification completed!</h1>
         <p>Congratulations.</p>
-        {/* <button className="submit-btn" type="submit" onClick={() => alert('🥺🥺🥺🥺🥺\n Oh no you didn\'t!!!!!!!')}>Continue</button> */}
       </div>
     </div>
   );

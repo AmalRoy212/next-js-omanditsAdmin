@@ -7,6 +7,7 @@ import { redirect } from "next/navigation";
 import bcrypt from "bcrypt";
 import { signIn } from '@/app/auth'
 import Admin from "./adminModel";
+import DirectDelegate from "./directDelegates";
 
 export const addUsers = async function (FormData) {
   const { username, email, password, img, phone, address, isAdmin, isActive } = Object.fromEntries(FormData);
@@ -65,5 +66,26 @@ export const setAdmin = async function (){
     return "done"
   } catch (error) {
     throw new Error('failed to create admin')
+  }
+}
+
+export const registerDirectDelegates = async function ( data ){
+  const { fname, lname, email, job, companyName } = data;
+
+  try {
+    await connectToDB();
+    const newDirectDelegate = new DirectDelegate({
+      firstName : fname,
+      lastName : lname,
+      email,
+      JobTitle : job,
+      companyName
+    })
+
+    await newDirectDelegate.save();
+
+    return newDirectDelegate;
+  } catch (error) {
+    throw new Error(`Failed to create user ${error}`); 
   }
 }
