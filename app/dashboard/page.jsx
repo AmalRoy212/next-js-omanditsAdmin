@@ -5,11 +5,12 @@ import Rightbar from '../ui/dashboard/rightbar/Rightbar';
 import Transactions from '../ui/dashboard/transactions/Transactions';
 import Chart from '../ui/dashboard/chart/Chart';
 import { fetchInitialData } from '../lib/data';
+import { updateAllDocs } from '../lib/actions';
 
 async function Dashboard() {
 
-  const { count, delegate } =  await fetchInitialData()
-
+  const { count, delegate } =  await fetchInitialData();
+  // await updateAllDocs();  
   const data = [
     {
       title : "Delegates",

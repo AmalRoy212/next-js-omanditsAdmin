@@ -7,6 +7,7 @@ function Page() {
 
   const [ error, setError ] = useState(null);
   const [ register, setRegister ] = useState(true);
+  const [ popUp, setPopUp ] = useState(false);
 
   useEffect(() => {
 
@@ -26,7 +27,7 @@ function Page() {
         )
         :
         (
-          <Verify error={error} setError={setError} setRegister={setRegister} />
+            <Verify error={error} setError={setError} setRegister={setRegister} setPopUp={setPopUp} popUp={popUp} />
         )
       }
       

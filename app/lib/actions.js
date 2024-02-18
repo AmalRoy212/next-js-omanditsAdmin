@@ -8,6 +8,7 @@ import bcrypt from "bcrypt";
 import { signIn } from '@/app/auth'
 import Admin from "./adminModel";
 import DirectDelegate from "./directDelegates";
+import Delegate from "./delegateModel";
 
 export const addUsers = async function (FormData) {
   const { username, email, password, img, phone, address, isAdmin, isActive } = Object.fromEntries(FormData);
@@ -69,8 +70,8 @@ export const setAdmin = async function (){
   }
 }
 
-export const registerDirectDelegates = async function ( data ){
-  const { fname, lname, email, job, companyName } = data;
+export const registerDirectDelegates = async function (FormData ){
+  const { fname, lname, email, job, companyName } = Object.fromEntries(FormData);;
 
   try {
     await connectToDB();
@@ -86,6 +87,43 @@ export const registerDirectDelegates = async function ( data ){
 
     return newDirectDelegate;
   } catch (error) {
-    throw new Error(`Failed to create user ${error}`); 
+    throw new Error(`Failed to create delegate ${error}`); 
   }
 }
+
+export const updateCheckIns = async function (email) {
+  try {
+    if (!email || typeof email !== 'string') {
+      throw new Error('Invalid email parameter');
+    }
+
+    await connectToDB();
+
+    const result = await Delegate.updateMany(
+      { email: email },
+      { $set: { checkin: true } }
+    );
+
+    console.log("something");
+    return result;
+  } catch (error) {
+    throw new Error(`Failed to update check-in status: ${error}`);
+  }
+};
+
+
+//util function can update all the documents    
+export const updateAllDocs = async function () {
+  try {
+    await connectToDB(); // Assuming connectToDB is an async function
+    await Delegate.updateMany(
+      {},
+      { $set: { checkin: false } }
+    );
+    console.log("All documents updated successfully.");
+  } catch (error) {
+    console.error("Error updating documents:", error);
+    // Optionally, you can re-throw the error if you want the caller to handle it
+    // throw error;
+  }
+};

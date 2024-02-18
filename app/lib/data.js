@@ -155,3 +155,4 @@ export const fetchSingleNominee = async function(id){
     throw new Error(`Failed to fetch nominee: ${error.message}`);
   }
 }
+

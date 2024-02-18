@@ -55,6 +55,10 @@ const DelegateSchema = new mongoose.Schema({
     type : String,
     required : true
   },
+  checkin : {
+    type : Boolean,
+    default : false
+  },
   timing : {
     type : String,
     required : true
