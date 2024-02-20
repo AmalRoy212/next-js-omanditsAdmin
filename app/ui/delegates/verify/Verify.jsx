@@ -2,6 +2,8 @@ import { updateAllDocs, updateCheckIns } from '@/app/lib/actions';
 import React from 'react';
 import { FaArrowAltCircleRight } from "react-icons/fa";
 import CheckIn from '../../checkin/CheckInComp';
+import emailjs from '@emailjs/browser';
+
 
 function Verify({ error, setError, setRegister, popUp, setPopUp }) {
 
@@ -12,9 +14,42 @@ function Verify({ error, setError, setRegister, popUp, setPopUp }) {
     const data = Object.fromEntries(formData.entries());
 
     try {
-      const result = await updateCheckIns(data.email);
+      const { result, updatedDocuments } = await updateCheckIns(data.email);
+      console.log(result)
+      console.log(updatedDocuments)
+
+      const delegate = updatedDocuments[0]
       if (result.matchedCount === 1) {
-        setPopUp(result)
+        setPopUp(result);
+        const params = {
+          name: delegate.name,
+          email: delegate.email,
+          companyName: delegate.companyName,
+          country: delegate.country,
+          industry: delegate.industry,
+          jobTitle: delegate.jobTitle,
+          lookingFor: delegate.lookingFor,
+          numOfEmployees: delegate.numOfEmployees,
+          phone: delegate.phone,
+          role: delegate.role,
+          timing: delegate.timing,
+
+        }
+
+        const templateId = 'template_ir9lddd'
+        const serviceId = 'service_8ke8tpa'
+
+        emailjs
+          .send(serviceId, templateId, params, "iMBmW4ddMSG0gl5yp")
+          .then((res) => {
+            console.log(res)
+          })
+          .catch((error) => {
+            console.log(error)
+            setError(error)
+          });
+
+
       } else {
         setError({ message: 'This Email address is not registered!' });
       }
@@ -27,7 +62,7 @@ function Verify({ error, setError, setRegister, popUp, setPopUp }) {
   return (
     <div className='w-full h-[100vh] flex justify-center items-center p-10 flex-col relative'>
       {
-        error && <div className='bg-red-800 w-[96%] md:w-[300px] min-h-[100px] absolute top-5 left-2 rounded-2xl text-white p-3 flex justify-center items-center'>
+        error && <div className='bg-red-800 z-10 w-[96%] md:w-[300px] min-h-[100px] absolute top-5 left-2 rounded-2xl text-white p-3 flex justify-center items-center'>
           <h3>{error.message}</h3>
         </div>
       }

@@ -14,19 +14,19 @@ export const addUsers = async function (FormData) {
   const { username, email, password, img, phone, address, isAdmin, isActive } = Object.fromEntries(FormData);
 
   try {
-    
+
     await connectToDB();
 
     const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password,salt);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
     const newUser = new User({
-      username, 
-      email, 
-      password : hashedPassword, 
-      phone, 
-      address, 
-      isAdmin, 
+      username,
+      email,
+      password: hashedPassword,
+      phone,
+      address,
+      isAdmin,
       isActive
     })
 
@@ -40,27 +40,27 @@ export const addUsers = async function (FormData) {
   redirect('/dashboard/users')
 }
 
-export const authenticate = async function(FormData) {
+export const authenticate = async function (FormData) {
   const { username, password } = Object.fromEntries(FormData);
 
   try {
     await signIn("credentials", { username, password });
   } catch (error) {
-    return {error : "wrong crendetials"}
+    return { error: "wrong crendetials" }
   }
 }
 
-export const setAdmin = async function (){
-  
+export const setAdmin = async function () {
+
   try {
     await connectToDB();
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD, salt);
     const newAdmin = new Admin({
       username: process.env.ADMIN_USERNAME,
-      password : hashedPassword,
+      password: hashedPassword,
       img: process.env.ADMIN_IMG,
-      email : process.env.ADMIN_EMAIL
+      email: process.env.ADMIN_EMAIL
     });
 
     await newAdmin.save();
@@ -70,16 +70,16 @@ export const setAdmin = async function (){
   }
 }
 
-export const registerDirectDelegates = async function (FormData ){
+export const registerDirectDelegates = async function (FormData) {
   const { fname, lname, email, job, companyName } = Object.fromEntries(FormData);;
 
   try {
     await connectToDB();
     const newDirectDelegate = new DirectDelegate({
-      firstName : fname,
-      lastName : lname,
+      firstName: fname,
+      lastName: lname,
       email,
-      JobTitle : job,
+      JobTitle: job,
       companyName
     })
 
@@ -87,7 +87,7 @@ export const registerDirectDelegates = async function (FormData ){
 
     return newDirectDelegate;
   } catch (error) {
-    throw new Error(`Failed to create delegate ${error}`); 
+    throw new Error(`Failed to create delegate ${error}`);
   }
 }
 
@@ -99,14 +99,18 @@ export const updateCheckIns = async function (email) {
 
     await connectToDB();
 
+    const updatedDocuments = await Delegate.find({ email: email });
+
+    if (updatedDocuments.checkin) return {message:'You have already verified'}
+
     const result = await Delegate.updateMany(
       { email: email },
       { $set: { checkin: true } }
     );
+    
     console.log(result)
 
-    console.log("something");
-    return result;
+    return { result, updatedDocuments };
   } catch (error) {
     throw new Error(`Failed to update check-in status: ${error}`);
   }

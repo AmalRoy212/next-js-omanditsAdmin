@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Register from '../ui/delegates/register/Register';
 import Verify from '../ui/delegates/verify/Verify';
+import emailjs from '@emailjs/browser'
 
 function Page() {
 
@@ -14,6 +15,12 @@ function Page() {
     const timer = setTimeout(() => {
       setError(null);
     }, 3000);
+
+    (function(){
+      emailjs.init({
+        publicKey: "iMBmW4ddMSG0gl5yp",
+      });
+   })();
 
     return () => clearTimeout(timer);
   }, [error]); 
