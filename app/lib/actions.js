@@ -103,6 +103,7 @@ export const updateCheckIns = async function (email) {
       { email: email },
       { $set: { checkin: true } }
     );
+    console.log(result)
 
     console.log("something");
     return result;

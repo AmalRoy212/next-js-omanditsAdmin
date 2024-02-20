@@ -5,7 +5,7 @@ import CheckIn from '../../checkin/CheckInComp';
 
 function Verify({ error, setError, setRegister, popUp, setPopUp }) {
 
-  const handleCheckin = async function(event){
+  const handleCheckin = async function (event) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
@@ -13,10 +13,15 @@ function Verify({ error, setError, setRegister, popUp, setPopUp }) {
 
     try {
       const result = await updateCheckIns(data.email);
-      setPopUp(result)
+      if (result.matchedCount === 1) {
+        setPopUp(result)
+      } else {
+        setError({ message: 'This Email address is not registered!' });
+      }
     } catch (error) {
       setError(error);
     }
+
   }
 
   return (
