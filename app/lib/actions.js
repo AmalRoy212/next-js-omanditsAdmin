@@ -92,6 +92,9 @@ export const registerDirectDelegates = async function (FormData) {
 }
 
 export const updateCheckIns = async function (email) {
+  let result = {
+    message : "You have already verified"
+  }
   try {
     if (!email || typeof email !== 'string') {
       throw new Error('Invalid email parameter');
@@ -101,19 +104,18 @@ export const updateCheckIns = async function (email) {
 
     const updatedDocuments = await Delegate.find({ email: email });
 
-    if (updatedDocuments.checkin) return {message:'You have already verified'}
-
-    const result = await Delegate.updateMany(
+    if (updatedDocuments[0].checkin) return {result, updatedDocuments}
+    
+     result = await Delegate.updateOne(
       { email: email },
       { $set: { checkin: true } }
-    );
-    
-    console.log(result)
+      );
+      
 
-    return { result, updatedDocuments };
-  } catch (error) {
-    throw new Error(`Failed to update check-in status: ${error}`);
-  }
+      return { result, updatedDocuments };
+    } catch (error) {
+      throw new Error(`Failed to update check-in status: ${error}`);
+    }
 };
 
 
