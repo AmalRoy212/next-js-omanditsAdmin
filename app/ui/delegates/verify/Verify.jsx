@@ -24,9 +24,9 @@ function Verify({ error, setError, setRegister, popUp, setPopUp }) {
         setPopUp(result);
         const params = {
           name: delegate.name,
-          email: delegate.email,
           companyName: delegate.companyName,
           country: delegate.country,
+          email: delegate.email,
           industry: delegate.industry,
           jobTitle: delegate.jobTitle,
           lookingFor: delegate.lookingFor,
