@@ -23,10 +23,6 @@ function Verify({ error, setError, setRegister, popUp, setPopUp }) {
         return
       }
 
-      console.log(updatedDocuments, result);
-
-      // if(!updatedDocuments && result.message) return setError({ message: 'This Email address is not registered!' });
-
       if (result.matchedCount === 1) {
         setPopUp(result);
         const params = {
