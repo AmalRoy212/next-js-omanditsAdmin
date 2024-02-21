@@ -107,7 +107,7 @@ export const updateCheckIns = async function (email) {
     if(updatedDocuments[0]){
       if (updatedDocuments[0].checkin) return {result, updatedDocuments}
     } else {
-      result.message = `Please check your email address. It doesn't exist registration list`;
+      result.message = `Please check your email address. It doesn't exist in registration list`;
       return {result, updatedDocuments}
     }  
      result = await Delegate.updateOne(
