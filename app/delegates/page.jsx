@@ -34,7 +34,7 @@ function Page() {
         )
         :
         (
-            <Verify error={error} setError={setError} setRegister={setRegister} setPopUp={setPopUp} popUp={popUp} />
+          <Verify error={error} setError={setError} setRegister={setRegister} setPopUp={setPopUp} popUp={popUp} />
         )
       }
       

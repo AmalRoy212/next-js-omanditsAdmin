@@ -15,11 +15,18 @@ function Verify({ error, setError, setRegister, popUp, setPopUp }) {
 
     try {
       const { result, updatedDocuments } = await updateCheckIns(data.email);
-      const delegate = updatedDocuments[0]
+
+      const delegate = updatedDocuments[0];
+
       if (result.message){
         setError(result);
         return
       }
+
+      console.log(updatedDocuments, result);
+
+      // if(!updatedDocuments && result.message) return setError({ message: 'This Email address is not registered!' });
+
       if (result.matchedCount === 1) {
         setPopUp(result);
         const params = {
@@ -52,9 +59,6 @@ function Verify({ error, setError, setRegister, popUp, setPopUp }) {
 
 
       } 
-      else {
-        setError({ message: 'This Email address is not registered!' });
-      }
     } catch (error) {
       setError(error);
     }

@@ -103,9 +103,10 @@ export const updateCheckIns = async function (email) {
     await connectToDB();
 
     const updatedDocuments = await Delegate.find({ email: email });
-
-    if (updatedDocuments[0].checkin) return {result, updatedDocuments}
-    
+    console.log(updatedDocuments)
+    if(updatedDocuments[0]){
+      if (updatedDocuments[0].checkin) return {result, updatedDocuments}
+    } else throw new Error(`Please check the email adress. its doesn't exist in registration list`)    
      result = await Delegate.updateOne(
       { email: email },
       { $set: { checkin: true } }
