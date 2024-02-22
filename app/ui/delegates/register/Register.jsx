@@ -45,7 +45,7 @@ function Register({ error, setError, setRegister }) {
           <h3>{error.message}</h3>
         </div>
       }
-      <div  style={{ boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.5)" }} className="w-full md:w-[40%] min-h-[40vh] p-10 bg-[#e6e6e6] rounded-2xl relative flex justify-center items-center flex-col">
+      <div className="w-full md:w-[40%] min-h-[40vh] p-10 bg-[#e6e6e6] rounded-2xl relative flex justify-center items-center flex-col">
         <img className='absolute top-[-1.5rem] bg-slate-800 rounded-full' src="https://omandits.com/assets/images/dits.png" width={50} height={50} alt="" />
         <a href="https://omandits.com/delegateEnquiry.html" className='flex items-center gap-2 md:text-[15px] text-[12px] py-2 px-12 rounded-lg bg-green-800 hover:border hover:bg-green-600'><FaArrowAltCircleRight />Countinue as a new delegate</a>
         <h1 className='text-black'>OR</h1> 
