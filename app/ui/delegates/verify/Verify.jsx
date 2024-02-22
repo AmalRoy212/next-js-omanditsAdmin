@@ -26,7 +26,7 @@ function Verify({ error, setError, setRegister, popUp, setPopUp }) {
           name: delegate.name,
           companyName: delegate.companyName,
           country: delegate.country,
-          email: delegate.email,
+          email: delegate.email, 
           industry: delegate.industry,
           jobTitle: delegate.jobTitle,
           lookingFor: delegate.lookingFor,
