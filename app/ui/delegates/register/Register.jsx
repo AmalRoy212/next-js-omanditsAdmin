@@ -39,14 +39,14 @@ function Register({ error, setError, setRegister }) {
 
 
   return (
-    <div className='w-full h-[100vh] flex justify-center items-center p-10 flex-col relative'>
+    <div className='w-full h-[85vh]  flex justify-center items-center p-2 md:p-10 flex-col relative'>
       {
         error && <div className='z-10 bg-red-800 w-[96%] md:w-[300px] min-h-[100px] absolute top-5 left-2 rounded-2xl text-white p-3 flex justify-center items-center'>
           <h3>{error.message}</h3>
         </div>
       }
-      <h1 className='absolute top-10 text-[22px] bg-[#182237] p-5 rounded-2xl flex gap-3 items-center'>You already have registered mail id ?? <button className='flex items-center gap-2 text-[15px] bg-green-700 py-1 px-3 rounded' onClick={() => setRegister(false)}><FaArrowAltCircleRight />Verify</button></h1>
-      <form onSubmit={handleCheckin} className="w-full md:w-[50%] h-auto p-10 bg-[#182237] rounded-2xl relative flex justify-center items-center flex-col">
+      {/* <h1 className='absolute top-10 text-[22px] bg-[#182237] p-5 rounded-2xl flex gap-3 items-center'>Please Verify Your Registered Email Address To Check In At The Event<button className='flex items-center gap-2 text-[15px] bg-green-700 py-1 px-3 rounded' onClick={() => setRegister(false)}><FaArrowAltCircleRight />Verify</button></h1> */}
+      <div className="w-full md:w-[50%] min-h-[40vh] p-10 bg-[#e6e6e6] rounded-2xl relative flex justify-center items-center flex-col">
         <img className='absolute top-[-1.5rem]' src="https://omandits.com/assets/images/dits.png" width={50} height={50} alt="" />
         {/* <h1 className="absolute top-10">Delegate Form</h1> */}
         {/* <div className='w-full h-auto md:flex-row flex-col flex gap-5 justify-center items-center md:mt-10 mt-[5rem]'>
@@ -60,8 +60,10 @@ function Register({ error, setError, setRegister }) {
         <input required className='w-full p-2 border rounded-xl bg-[#151c2c] md:mt-10 mt-6' type="companyName" name="companyName" id="companyName" placeholder='Company name' />
         <button type='submit' className='p-2 mt-10 bg-green-500 px-10 rounded-2xl text-black'>Register</button> */}
         
-        <a href="https://omandits.com/delegateEnquiry.html" className=' py-2 px-5 rounded-lg bg-green-800 hover:border'>New Delegate Registration</a>
-      </form>
+        <a href="https://omandits.com/delegateEnquiry.html" className='flex items-center gap-2 text-[15px] py-2 px-12 rounded-lg bg-green-800 hover:border hover:bg-green-600'><FaArrowAltCircleRight />Countinue as a new delegate</a>
+        <h1 className='text-black'>OR</h1> 
+        <button className='flex items-center gap-2 text-[15px]  py-2 px-6 rounded-lg bg-blue-800 hover:border hover:bg-blue-600' onClick={() => setRegister(false)}><FaArrowAltCircleRight />Verify your registered email address</button>
+      </div>
     </div>
   )
 }
