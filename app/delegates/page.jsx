@@ -31,7 +31,7 @@ function Page() {
   }, [error]); 
 
   return (
-    <div>
+    <div className='overflow-hidden'>
       <img src="https://images.vexels.com/media/users/3/145258/raw/34c0da699da0478a4086d0760f376b2c-minimalist-wavy-white-background.jpg" className='absolute top-0 w-full h-full object-cover overflow-hidden' alt="" />
       <Navbar/>
       {
