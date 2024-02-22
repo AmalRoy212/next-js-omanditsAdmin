@@ -64,13 +64,13 @@ function Verify({ error, setError, setRegister, popUp, setPopUp }) {
   }
 
   return (
-    <div className='w-full md:h-[100vh] h-[85vh] flex justify-center items-center px-2 md:p-10 flex-col relative'>
+    <div className='w-full md:h-[110vh] h-[85vh] flex justify-center items-center px-2 md:p-10 flex-col relative'>
       {
         error && <div className='bg-red-800 z-30 w-[96%] md:w-[300px] min-h-[100px] absolute top-5 left-2 rounded-2xl text-white p-3 flex justify-center items-center'>
           <h3>{error.message}</h3>
         </div>
       }
-      <form onSubmit={handleCheckin} className="w-full md:w-[50%] h-auto py-10 px-2 md:p-10 bg-[#e6e6e6] rounded-2xl relative flex justify-center items-center flex-col">
+      <form onSubmit={handleCheckin} className="w-full md:w-[40%] md:h-auto py-10 px-2 md:px-5 bg-[#dfecfe] rounded-2xl relative flex justify-center items-center flex-col">
         <img className='absolute top-[-1.5rem]' src="https://omandits.com/assets/images/dits.png" width={50} height={50} alt="" />
         <h1 className="absolute top-10 text-black">Verify your self</h1>
         <input className='w-full p-2 border rounded-xl bg-white md:mt-10 mt-10 text-black' type="email" name="email" id="email" placeholder='Please enter your registered email id' />

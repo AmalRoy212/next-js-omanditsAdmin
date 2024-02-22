@@ -4,7 +4,7 @@ function Navbar() {
   return (
     <div className="z-20 w-full h-[80px] flex justify-center items-center px-5 py-3 absolute top-0 left-0">
       <div
-        className="flex gap-10 justify-center relative items-center md:flex-row flex-col w-full h-full rounded-xl bg-[#e6e6e6]"
+        className="flex gap-10 justify-center relative items-center md:flex-row flex-col w-full h-full rounded-xl bg-[#e9f2ff]"
         style={{ boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.5)' }}
       >
         <img className="w-[60px] absolute left-2" src="https://genfinityglobal.com/images/logos/GG_Logo%20BLACK.png" alt="" />

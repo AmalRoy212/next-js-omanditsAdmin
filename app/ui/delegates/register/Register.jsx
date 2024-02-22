@@ -39,13 +39,13 @@ function Register({ error, setError, setRegister }) {
 
 
   return (
-    <div className='w-full h-[85vh]  flex justify-center items-center p-2 md:p-10 flex-col relative'>
+    <div className='w-full h-[85vh] md:h-[100vh] flex justify-center items-center p-2 md:p-10 flex-col relative'>
       {
         error && <div className='z-10 bg-red-800 w-[96%] md:w-[300px] min-h-[100px] absolute top-5 left-2 rounded-2xl text-white p-3 flex justify-center items-center'>
           <h3>{error.message}</h3>
         </div>
       }
-      <div className="w-full md:w-[40%] min-h-[40vh] p-10 bg-[#e6e6e6] rounded-2xl relative flex justify-center items-center flex-col">
+      <div className="w-full md:w-[40%] min-h-[40vh] p-10 bg-[#dfecfe] rounded-2xl relative flex justify-center items-center flex-col">
         <img className='absolute top-[-1.5rem] bg-slate-800 rounded-full' src="https://omandits.com/assets/images/dits.png" width={50} height={50} alt="" />
         <a href="https://omandits.com/delegateEnquiry.html" className='flex items-center gap-2 md:text-[15px] text-[12px] py-2 px-12 rounded-lg bg-green-800 hover:border hover:bg-green-600'><FaArrowAltCircleRight />Countinue as a new delegate</a>
         <h1 className='text-black'>OR</h1> 
