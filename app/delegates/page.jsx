@@ -28,7 +28,7 @@ function Page() {
   }, [error]);
 
   return (
-    <div className="h-auto min-h-[100vh] relative">
+    <div className="h-[100vh] md:min-h-[120vh] relative overflow-hidden">
       <img
         src="https://images.squarespace-cdn.com/content/v1/61ca8648a4e8bf04995cf3d7/9c0bc974-8659-4702-a76a-49cb4d5c68ff/Gradient+2.png"
         className="hidden md:flex absolute top-0 w-full h-full object-cover overflow-hidden"
