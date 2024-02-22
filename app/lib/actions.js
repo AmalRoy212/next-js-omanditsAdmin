@@ -91,10 +91,11 @@ export const registerDirectDelegates = async function (FormData) {
   }
 }
 
-export const updateCheckIns = async function (email) {
+export const updateCheckIns = async function (email, phone) {
   let result = {
-    message : "You have already verified"
+    message : "You have already checked in"
   }
+  console.log(email, phone);
   try {
     if (!email || typeof email !== 'string') {
       throw new Error('Invalid email parameter');
@@ -104,8 +105,12 @@ export const updateCheckIns = async function (email) {
 
     const updatedDocuments = await Delegate.find({ email: email });
 
-    if (updatedDocuments[0].checkin) return {result, updatedDocuments}
-    
+    if(updatedDocuments[0]){
+      if (updatedDocuments[0].checkin) return {result, updatedDocuments}
+    } else {
+      result.message = `Please check your email address. It doesn't exist in the registration list`;
+      return {result, updatedDocuments}
+    }  
      result = await Delegate.updateOne(
       { email: email },
       { $set: { checkin: true } }
