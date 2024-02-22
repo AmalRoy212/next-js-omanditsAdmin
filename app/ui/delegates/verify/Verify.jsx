@@ -15,6 +15,8 @@ function Verify({ error, setError, setRegister, popUp, setPopUp }) {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
 
+    if(!data.email) return setError({message : "Please fill the required feilds"});
+
     try {
       const { result, updatedDocuments } = await updateCheckIns(data.email, data.mobile);
 
@@ -75,9 +77,9 @@ function Verify({ error, setError, setRegister, popUp, setPopUp }) {
         <h1 className="absolute top-10 text-black">Verify your self</h1>
         <input className='w-full p-2 border rounded-xl bg-white md:mt-10 mt-10 text-black' type="email" name="email" id="email" placeholder='Please enter your registered email id' />
         <input className='w-full p-2 border rounded-xl bg-white md:mt-10 mt-6 text-black' type="text" name="mobile" id="mobile" placeholder='Please enter your registered mobile number' />
-        <button type='submit' className='p-2 mt-10 bg-green-500 px-10 rounded-2xl text-white'>Verify</button>
+        <button type='submit' className='p-2 mt-10 bg-green-500 px-10 rounded-2xl text-white hover:border hover:bg-green-700'>Verify</button>
         <h2 className='p-2 text-black'>OR</h2>
-        <button className='flex items-center gap-2 text-[15px] bg-blue-700 py-2 px-5  rounded-2xl' onClick={() => setRegister(true)}><FaArrowAltCircleRight />Register</button>
+        <button className='flex items-center gap-2 text-[15px] bg-blue-700 py-2 px-5  rounded-2xl hover:border hover:bg-blue-900' onClick={() => setRegister(true)}><FaArrowAltCircleRight />Register</button>
       </form>
       {popUp && <CheckIn />}  
     </div>
