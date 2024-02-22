@@ -10,9 +10,9 @@ function Navbar() {
         <img className="w-[60px] absolute left-2" src="https://genfinityglobal.com/images/logos/GG_Logo%20BLACK.png" alt="" />
         <div className="flex justify-center items-center gap-2 md:gap-5 h-full px-5 w-auto text-black text-[13px] font-light">
             <a href="https://omandits.com/">Home</a>
-            <a href="https://omandits.com/delegateEnquiry.html">Delegates</a>
+            {/* <a href="https://omandits.com/delegateEnquiry.html">Delegates</a>
             <a href="https://omandits.com/sponsorshipEnquiry.html">Sponsors</a>
-            <a href="https://omandits.com/speakersForm.html">Speakers</a>
+            <a href="https://omandits.com/speakersForm.html">Speakers</a> */}
         </div>
         <img className="w-[45px] absolute right-3 bg-slate-700 rounded-full" src="https://omandits.com/assets/images/dits.png" alt="" />
       </div>
