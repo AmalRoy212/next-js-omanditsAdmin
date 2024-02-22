@@ -3,9 +3,10 @@ import React from 'react';
 import { FaArrowAltCircleRight } from "react-icons/fa";
 import CheckIn from '../../checkin/CheckInComp';
 import emailjs from '@emailjs/browser';
+import Email from '../email/Email';
 
 
-function Verify({ error, setError, setRegister, popUp, setPopUp }) {
+function Verify({ error, setError, setRegister, popUp, setPopUp, isGmail, setIsGmail }) {
 
   const handleCheckin = async function (event) {
     event.preventDefault();
@@ -81,7 +82,8 @@ function Verify({ error, setError, setRegister, popUp, setPopUp }) {
         <h2 className='p-2 text-black'>OR</h2>
         <button className='flex items-center gap-2 text-[15px] bg-blue-700 py-2 px-5  rounded-2xl hover:border hover:bg-blue-900' onClick={() => setRegister(true)}><FaArrowAltCircleRight />Register</button>
       </form>
-      {popUp && <CheckIn />}  
+      { popUp && <CheckIn /> }  
+      { isGmail && <Email/> }
     </div>
   )
 }
