@@ -1,26 +1,22 @@
-"use client";
-
-import BarLoader from "react-spinners/BarLoader";
-import styles from "./loader.module.css";
-import { useSelector } from 'react-redux'
+import FadeLoader from "react-spinners/FadeLoader";
 
 function Loader() {
-  const loading = useSelector(state => state.loading.value);
 
   return (
-    <div className={styles.container}>
-        {loading && 
-            <div className={styles.holder}>
-              <div className="sweet-loading">
-                <BarLoader
-                    color="green"
-                    size={50}
-                    aria-label="Loading Spinner"
-                    data-testid="loader"
-                />
-              </div>
-            </div>
-        }
+    <div className="w-full h-screen flex justify-center items-center absolute top-0 left-0">
+      <div className="w-[200px] h-[200px] rounded-xl bg-black flex justify-center items-center">
+        <div className="sweet-loading flex justify-center items-center w-full h-full flex-col">
+          <FadeLoader
+            color={'blue'}
+            size={80}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+            className="ml-3"
+            />
+          <br />
+          <h4>Loading ...</h4>
+        </div>
+      </div>
     </div>
   );
 }

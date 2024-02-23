@@ -64,13 +64,14 @@ function Page() {
             email={email}
             data={data}
             setData={setData}
+            setLoader={setLoader}
           />
         )}
       </div>
       <div className="absolute bottom-0 w-full">
         <Footer />
       </div>
-      {/* {<Loader/>} */}
+      {loader && <Loader/>}
     </div>
   );
 }

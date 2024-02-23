@@ -17,7 +17,8 @@ function Verify({
   email, 
   setEmail, 
   data,
-  setData
+  setData,
+  setLoader
 }) {
 
   let count = 1;
@@ -33,7 +34,7 @@ function Verify({
 
   const checkGmail = function (event){
     event.preventDefault();
-
+    setLoader(true)
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
 
@@ -49,17 +50,23 @@ function Verify({
   }
 
   const handleFinalSubmit = function (){
-    if(checkEmail(email)) return setError({message:"Please help us with your official email adress"});
+    if(checkEmail(email)){ 
+      setLoader(false)
+      return setError({message:"Please help us with your official email adress"});
+    }
     handleCheckin(data,email);
   }
 
   const handleCheckin = async function (data, email) {
 
-    if(!data.email || !data.mobile) return setError({message : "Please fill the required feilds"});
-    setIsGmail(false);
+    if(!data.email || !data.mobile){ 
+      setLoader(false)
+      return setError({message : "Please fill the required feilds"});
+    }
     
     try {
       const { result, updatedDocuments } = await updateCheckIns(data.email, data.mobile, email);
+      setIsGmail(false);
 
       const delegate = updatedDocuments[0];
 
@@ -70,6 +77,7 @@ function Verify({
 
       if (result.matchedCount === 1) {
         setPopUp(result);
+
         const params = {
           name: delegate.name,
           companyName: delegate.companyName,
