@@ -15,7 +15,7 @@ function Verify({ error, setError, setRegister, popUp, setPopUp }) {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
 
-    if(!data.email) return setError({message : "Please fill the required feilds"});
+    if(!data.email || !data.mobile) return setError({message : "Please fill the required feilds"});
 
     try {
       const { result, updatedDocuments } = await updateCheckIns(data.email, data.mobile);
