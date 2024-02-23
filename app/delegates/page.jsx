@@ -12,7 +12,9 @@ function Page() {
   const [register, setRegister] = useState(true);
   const [popUp, setPopUp] = useState(false);
   const [loader, setLoader] = useState(false);
-  const [isGmail, setIsGmail] = useState(true);
+  const [isGmail, setIsGmail] = useState(false);
+  const [email, setEmail] = useState('');
+  const [data, setData] = useState(null)
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -58,6 +60,10 @@ function Page() {
             popUp={popUp}
             isGmail={isGmail}
             setIsGmail={setIsGmail}
+            setEmail={setEmail}
+            email={email}
+            data={data}
+            setData={setData}
           />
         )}
       </div>

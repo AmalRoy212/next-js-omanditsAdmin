@@ -6,20 +6,60 @@ import emailjs from '@emailjs/browser';
 import Email from '../email/Email';
 
 
-function Verify({ error, setError, setRegister, popUp, setPopUp, isGmail, setIsGmail }) {
+function Verify({ 
+  error, 
+  setError, 
+  setRegister, 
+  popUp, 
+  setPopUp, 
+  isGmail, 
+  setIsGmail, 
+  email, 
+  setEmail, 
+  data,
+  setData
+}) {
 
-  const handleCheckin = async function (event) {
+  let count = 1;
+
+  function checkEmail(email) {
+    var regex = /@gmail\.com$/;
+    if (regex.test(email)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  const checkGmail = function (event){
     event.preventDefault();
-
-    
 
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
 
-    if(!data.email || !data.mobile) return setError({message : "Please fill the required feilds"});
+    setData(data);
 
+    if(checkEmail(data.email)){
+      setIsGmail(true);
+      count ++
+    }else{
+      handleCheckin(data);
+    }
+    console.log(email, data.email, data.mobile);
+  }
+
+  const handleFinalSubmit = function (){
+    if(checkEmail(email)) return setError({message:"Please help us with your official email adress"});
+    handleCheckin(data,email);
+  }
+
+  const handleCheckin = async function (data, email = "0") {
+
+    if(!data.email || !data.mobile) return setError({message : "Please fill the required feilds"});
+    setIsGmail(false);
+    
     try {
-      const { result, updatedDocuments } = await updateCheckIns(data.email, data.mobile);
+      const { result, updatedDocuments } = await updateCheckIns(data.email, data.mobile, email);
 
       const delegate = updatedDocuments[0];
 
@@ -73,7 +113,7 @@ function Verify({ error, setError, setRegister, popUp, setPopUp, isGmail, setIsG
           <h3>{error.message}</h3>
         </div>
       }
-      <form onSubmit={handleCheckin} className="w-full md:w-[40%] md:h-auto py-10 px-2 md:px-5 bg-[#dfecfe] rounded-2xl relative flex justify-center items-center flex-col">
+      <form onSubmit={checkGmail} className="w-full md:w-[40%] md:h-auto py-10 px-2 md:px-5 bg-[#dfecfe] rounded-2xl relative flex justify-center items-center flex-col">
         <img className='absolute top-[-1.5rem]' src="https://omandits.com/assets/images/dits.png" width={50} height={50} alt="" />
         <h1 className="absolute top-10 text-black">Verify your self</h1>
         <input className='w-full p-2 border rounded-xl bg-white md:mt-10 mt-10 text-black' type="email" name="email" id="email" placeholder='Please enter your registered email id' />
@@ -83,7 +123,7 @@ function Verify({ error, setError, setRegister, popUp, setPopUp, isGmail, setIsG
         <button className='flex items-center gap-2 text-[15px] bg-blue-700 py-2 px-5  rounded-2xl hover:border hover:bg-blue-900' onClick={() => setRegister(true)}><FaArrowAltCircleRight />Register</button>
       </form>
       { popUp && <CheckIn /> }  
-      { isGmail && <Email/> }
+      { isGmail && <Email setEmail={setEmail} handleFinalSubmit={handleFinalSubmit}/> }
     </div>
   )
 }
