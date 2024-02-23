@@ -1,20 +1,20 @@
-"use server"
+"use server";
 
 import { revalidatePath } from "next/cache";
 import User from "./delegateModel";
 import connectToDB from "./utils";
 import { redirect } from "next/navigation";
 import bcrypt from "bcrypt";
-import { signIn } from '@/app/auth'
+import { signIn } from "@/app/auth";
 import Admin from "./adminModel";
 import DirectDelegate from "./directDelegates";
 import Delegate from "./delegateModel";
 
 export const addUsers = async function (FormData) {
-  const { username, email, password, img, phone, address, isAdmin, isActive } = Object.fromEntries(FormData);
+  const { username, email, password, img, phone, address, isAdmin, isActive } =
+    Object.fromEntries(FormData);
 
   try {
-
     await connectToDB();
 
     const salt = await bcrypt.genSalt(10);
@@ -27,18 +27,17 @@ export const addUsers = async function (FormData) {
       phone,
       address,
       isAdmin,
-      isActive
-    })
+      isActive,
+    });
 
     await newUser.save();
-
   } catch (error) {
     throw new Error(`Failed to create user ${error}`);
   }
 
-  revalidatePath('/dashboard/users');
-  redirect('/dashboard/users')
-}
+  revalidatePath("/dashboard/users");
+  redirect("/dashboard/users");
+};
 
 export const authenticate = async function (FormData) {
   const { username, password } = Object.fromEntries(FormData);
@@ -46,12 +45,11 @@ export const authenticate = async function (FormData) {
   try {
     await signIn("credentials", { username, password });
   } catch (error) {
-    return { error: "wrong crendetials" }
+    return { error: "wrong crendetials" };
   }
-}
+};
 
 export const setAdmin = async function () {
-
   try {
     await connectToDB();
     const salt = await bcrypt.genSalt(10);
@@ -60,18 +58,19 @@ export const setAdmin = async function () {
       username: process.env.ADMIN_USERNAME,
       password: hashedPassword,
       img: process.env.ADMIN_IMG,
-      email: process.env.ADMIN_EMAIL
+      email: process.env.ADMIN_EMAIL,
     });
 
     await newAdmin.save();
-    return "done"
+    return "done";
   } catch (error) {
-    throw new Error('failed to create admin')
+    throw new Error("failed to create admin");
   }
-}
+};
 
 export const registerDirectDelegates = async function (FormData) {
-  const { fname, lname, email, job, companyName } = Object.fromEntries(FormData);;
+  const { fname, lname, email, job, companyName } =
+    Object.fromEntries(FormData);
 
   try {
     await connectToDB();
@@ -80,8 +79,8 @@ export const registerDirectDelegates = async function (FormData) {
       lastName: lname,
       email,
       JobTitle: job,
-      companyName
-    })
+      companyName,
+    });
 
     await newDirectDelegate.save();
 
@@ -89,49 +88,53 @@ export const registerDirectDelegates = async function (FormData) {
   } catch (error) {
     throw new Error(`Failed to create delegate ${error}`);
   }
-}
+};
 
-export const updateCheckIns = async function (email, phone) {
+export const updateCheckIns = async function (email, phone, updateEmail = "") {
   let result = {
-    message : "You have already checked in"
-  }
-  console.log(email, phone);
+    message: "You have already checked in",
+  };
+
   try {
-    if (!email || typeof email !== 'string') {
-      throw new Error('Invalid email parameter');
+    if (!email || typeof email !== "string") {
+      throw new Error("Invalid email parameter");
     }
 
     await connectToDB();
 
-    const updatedDocuments = await Delegate.find({ email: email });
+    const updatedDocuments = await Delegate.find({
+      email: email,
+      phone: phone,
+    });
 
-    if(updatedDocuments[0]){
-      if (updatedDocuments[0].checkin) return {result, updatedDocuments}
+    if (updatedDocuments[0]) {
+      if (updatedDocuments[0].checkin) return { result, updatedDocuments };
     } else {
-      result.message = `Please check your email address. It doesn't exist in the registration list`;
-      return {result, updatedDocuments}
-    }  
-     result = await Delegate.updateOne(
-      { email: email },
-      { $set: { checkin: true } }
-      );
-      
-
+      result.message = `Please check your email address or mobile number. It doesn't exist in the registration list`;
       return { result, updatedDocuments };
-    } catch (error) {
-      throw new Error(`Failed to update check-in status: ${error}`);
     }
+
+    let updateQuery = { $set: { checkin: true } };
+
+    if (updateEmail) {
+      updateQuery.$set.email = updateEmail;
+    }
+
+    result = await Delegate.updateOne(
+      { email: email, phone: phone },
+      updateQuery
+    );
+    return { result, updatedDocuments };
+  } catch (error) {
+    throw new Error(`Failed to update check-in status: ${error}`);
+  }
 };
 
-
-//util function can update all the documents    
+//util function can update all the documents
 export const updateAllDocs = async function () {
   try {
     await connectToDB(); // Assuming connectToDB is an async function
-    await Delegate.updateMany(
-      {},
-      { $set: { checkin: false } }
-    );
+    await Delegate.updateMany({}, { $set: { checkin: false } });
     console.log("All documents updated successfully.");
   } catch (error) {
     console.error("Error updating documents:", error);

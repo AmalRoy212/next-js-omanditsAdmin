@@ -43,7 +43,7 @@ function Verify({
       setIsGmail(true);
       count ++
     }else{
-      handleCheckin(data);
+      handleCheckin(data, null);
     }
     console.log(email, data.email, data.mobile);
   }
@@ -53,7 +53,7 @@ function Verify({
     handleCheckin(data,email);
   }
 
-  const handleCheckin = async function (data, email = "0") {
+  const handleCheckin = async function (data, email) {
 
     if(!data.email || !data.mobile) return setError({message : "Please fill the required feilds"});
     setIsGmail(false);
