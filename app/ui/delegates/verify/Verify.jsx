@@ -46,6 +46,7 @@ function Verify({
   }
 
   const handleFinalSubmit = function (){
+    if(!email) return setError({message:"Please fill the required feilds"})
     setLoader(true)
     if(checkEmail(email)){ 
       setLoader(false)
