@@ -21,8 +21,6 @@ function Verify({
   setLoader
 }) {
 
-  let count = 1;
-
   function checkEmail(email) {
     var regex = /@gmail\.com$/;
     if (regex.test(email)) {
@@ -34,7 +32,6 @@ function Verify({
 
   const checkGmail = function (event){
     event.preventDefault();
-    setLoader(true)
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
 
@@ -42,14 +39,14 @@ function Verify({
 
     if(checkEmail(data.email)){
       setIsGmail(true);
-      count ++
     }else{
+      setLoader(true)
       handleCheckin(data, null);
     }
-    console.log(email, data.email, data.mobile);
   }
 
   const handleFinalSubmit = function (){
+    setLoader(true)
     if(checkEmail(email)){ 
       setLoader(false)
       return setError({message:"Please help us with your official email adress"});
@@ -66,6 +63,7 @@ function Verify({
     
     try {
       const { result, updatedDocuments } = await updateCheckIns(data.email, data.mobile, email);
+      setLoader(false)
       setIsGmail(false);
 
       const delegate = updatedDocuments[0];
@@ -99,14 +97,10 @@ function Verify({
         emailjs
           .send(serviceId, templateId, params, "iMBmW4ddMSG0gl5yp")
           .then((res) => {
-            console.log(res)
           })
           .catch((error) => {
-            console.log(error)
             setError(error)
           });
-
-
       } 
     } catch (error) {
       setError(error);
