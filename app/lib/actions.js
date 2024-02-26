@@ -9,6 +9,7 @@ import { signIn } from "@/app/auth";
 import Admin from "./adminModel";
 import DirectDelegate from "./directDelegates";
 import Delegate from "./delegateModel";
+import { sendingVerificationMail } from "./nodeMailer";
 
 export const addUsers = async function (FormData) {
   const { username, email, password, img, phone, address, isAdmin, isActive } =
@@ -90,7 +91,7 @@ export const registerDirectDelegates = async function (FormData) {
   }
 };
 
-export const updateCheckIns = async function (email, phone, updateEmail = "") {
+export const updateCheckIns = async function (email, phone, updateEmail = null) {
   let result = {
     message: "You have already checked in",
   };
@@ -124,6 +125,9 @@ export const updateCheckIns = async function (email, phone, updateEmail = "") {
       { email: email, phone: phone },
       updateQuery
     );
+
+    await sendingVerificationMail(updatedDocuments[0].name, email);
+    
     return { result, updatedDocuments };
   } catch (error) {
     throw new Error(`Failed to update check-in status: ${error}`);
