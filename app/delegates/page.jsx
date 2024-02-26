@@ -23,7 +23,7 @@ function Page() {
 
     (function () {
       emailjs.init({
-        publicKey: "iMBmW4ddMSG0gl5yp",
+        publicKey: "zGJeXsGcBR6hBztYp",
       });
     })();
 

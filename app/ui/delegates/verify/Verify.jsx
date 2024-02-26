@@ -92,11 +92,11 @@ function Verify({
 
         }
 
-        const templateId = 'template_ir9lddd'
-        const serviceId = 'service_8ke8tpa'
+        const templateId = 'template_qzsc9nk'
+        const serviceId = 'service_ngnwbg2'
 
         emailjs
-          .send(serviceId, templateId, params, "iMBmW4ddMSG0gl5yp")
+          .send(serviceId, templateId, params, "zGJeXsGcBR6hBztYp")
           .then((res) => {
           })
           .catch((error) => {
