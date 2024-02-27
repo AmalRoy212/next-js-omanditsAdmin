@@ -39,6 +39,7 @@ async function Delegates({searchParams}) {
             <td>Date</td>
             {/* <td>Compnay Name</td> */}
             {/* <td>Role</td>  */}
+            <td>Checkin</td>
             <td>Actions</td>
             
           </tr>
@@ -61,6 +62,9 @@ async function Delegates({searchParams}) {
                 {/* <td>{user.jobTitle}</td>
                 <td>{user.companyName}</td> */}
                 {/* <td>{user.role}</td> */}
+                <td>
+                  {user.checkedin}
+                </td>
                 <td>
                   <div className={styles.buttons}>
                     <Link href={`/dashboard/delegates/${user._id}`}>

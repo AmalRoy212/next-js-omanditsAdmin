@@ -48,6 +48,12 @@ export const welcomeMail = async function (userName, email) {
               background-color: white; 
               border-radius: 50%; 
             }
+            img-holder{
+              width: 150px; 
+              margin-bottom: 20px;
+              background-color: white; 
+              border-radius: 50%; 
+            }
             h1 {
               text-align: center;
               color: #333333;
@@ -64,7 +70,7 @@ export const welcomeMail = async function (userName, email) {
         <body>
           <div class="container">
             <div class="logo">
-              <img src="https://genfinityglobal.com/images/logos/GG_Logo%20BLACK.png" alt="Company Logo">
+              <img class="img-holder" src="https://genfinityglobal.com/images/logos/GG_Logo%20BLACK.png" alt="Company Logo">
             </div>
             <h1>Warm Welcome to Our Esteemed Delegates</h1>
             <p>Dear ${userName},</p>
