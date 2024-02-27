@@ -81,14 +81,9 @@ export const welcomeMail = async function (userName, email) {
         </html>
         `,
     };
-    transport.sendMail(mailOption, function (err, info) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log("mail has been send :-", info.response);
-      }
-    });
+    const info = await transport.sendMail(mailOption);
+    console.log("Mail has been sent:", info.response);
   } catch (error) {
-    console.log(error.message);
+    console.log("Error sending email:", error.message);
   }
 };
