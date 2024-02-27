@@ -10,7 +10,7 @@ export const welcomeMail = async function (userName, email) {
       requireTLS: true,
       auth: {
         user: "registrations@genfinityglobal.com",
-        pass: "lcefqacbvhtwrkwt",
+        pass: "blcxkxzfedvehyya",
       },
     });
     const mailOption = {
