@@ -14,7 +14,7 @@ export const welcomeMail = async function (userName, email) {
       },
     });
     const mailOption = {
-      from: "info@genfinityglobal.com",
+      from: "registrations@genfinityglobal.com",
       to: email,
       subject: "Welcome to DITS",
       html: `
