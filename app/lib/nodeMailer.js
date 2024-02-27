@@ -1,6 +1,7 @@
 import nodemailer from "nodemailer";
 
 export const welcomeMail = async function (userName, email) {
+  console.log(userName, email, "Function called");
   try {
     const transport = nodemailer.createTransport({
       host: "smtp.gmail.com",
