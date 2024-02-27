@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 
-export const sendingVerificationMail = async function (userName, email) {
+export const welcomeMail = async function (userName, email) {
   try {
     const transport = nodemailer.createTransport({
       host: "smtp.gmail.com",
@@ -8,12 +8,12 @@ export const sendingVerificationMail = async function (userName, email) {
       secure: false,
       requireTLS: true,
       auth: {
-        user: process.env.SMTP_MAIL_ID,
-        pass: process.env.SMTP_MAIL_PASSWORD,
+        user: "registrations@genfinityglobal.com",
+        pass: "lcefqacbvhtwrkwt",
       },
     });
     const mailOption = {
-      from: process.env.SMTP_SENDER,
+      from: "info@genfinityglobal.com",
       to: email,
       subject: "Welcome to DITS",
       html: `
@@ -42,8 +42,10 @@ export const sendingVerificationMail = async function (userName, email) {
               text-align: center;
             }
             .logo img {
-              width: 150px; /* Adjust the size of your logo */
+              width: 150px; 
               margin-bottom: 20px;
+              background-color: white; 
+              border-radius: 50%; 
             }
             h1 {
               text-align: center;
