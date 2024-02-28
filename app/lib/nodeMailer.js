@@ -44,12 +44,14 @@ export const welcomeMail = async function (userName, email) {
             }
             .logo img {
               width: 150px; 
+              height: 150px; 
               margin-bottom: 20px;
               background-color: white; 
               border-radius: 50%; 
             }
             img-holder{
               width: 150px; 
+              height: 150px; 
               margin-bottom: 20px;
               background-color: white; 
               border-radius: 50%; 
