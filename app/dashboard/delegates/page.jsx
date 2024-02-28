@@ -62,8 +62,12 @@ async function Delegates({searchParams}) {
                 {/* <td>{user.jobTitle}</td>
                 <td>{user.companyName}</td> */}
                 {/* <td>{user.role}</td> */}
-                <td>
-                  {user.checkedin}
+                <td style={{display:"flex", justifyContent:"center"}}>
+                  <h2>{user.checkin ? <>
+                      <div style={{width:"10px", height:"10px", borderRadius:"50%", backgroundColor:"green"}}></div>
+                  </> : <>
+                    <div style={{width:"10px", height:"10px", borderRadius:"50%", backgroundColor:"red"}}></div>
+                  </>}</h2>
                 </td>
                 <td>
                   <div className={styles.buttons}>
