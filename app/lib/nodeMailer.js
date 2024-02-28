@@ -70,7 +70,7 @@ export const welcomeMail = async function (userName, email) {
         <body>
           <div class="container">
             <div class="logo">
-              <img class="img-holder" src="https://genfinityglobal.com/images/logos/GG_Logo%20BLACK.png" alt="Company Logo">
+              <img class="img-holder" src="https://omandits.com/assets/images/logo/gg_logo.jpg" alt="Company Logo">
             </div>
             <h1>Warm Welcome to Our Esteemed Delegates</h1>
             <p>Dear ${userName},</p>
@@ -81,6 +81,8 @@ export const welcomeMail = async function (userName, email) {
             <div class="signature">
               <p>Best Regards,</p>
               <p>Team Genfinity Global</p>
+              <p>Feel free to connect with us</p>
+              <a href="#">info@genfinityglobal.com</a>
             </div>
           </div>
         </body>
