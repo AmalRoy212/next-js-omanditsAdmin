@@ -127,7 +127,6 @@ export const updateCheckIns = async function (email, phone, updateEmail = null) 
     );
 
     await welcomeMail(updatedDocuments[0].name, email);
-    console.log("email statement");
     return { result, updatedDocuments };
   } catch (error) {
     throw new Error(`Failed to update check-in status: ${error}`);

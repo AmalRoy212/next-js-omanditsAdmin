@@ -1,7 +1,6 @@
 import nodemailer from "nodemailer";
 
 export const welcomeMail = async function (userName, email) {
-  console.log(userName, email, "Function called");
   try {
     const transport = nodemailer.createTransport({
       host: "smtp.gmail.com",
@@ -92,7 +91,7 @@ export const welcomeMail = async function (userName, email) {
         `,
     };
     const info = await transport.sendMail(mailOption);
-    console.log("Mail has been sent:", info.response);
+    console.log("Mail has been sent", info.response);
   } catch (error) {
     console.log("Error sending email:", error.message);
   }
